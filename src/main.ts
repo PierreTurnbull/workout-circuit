@@ -142,7 +142,11 @@ function renderSetEditor(set: ExerciseSet, index: number): HTMLElement {
           },
         },
         EXERCISES.map((exercise) =>
-          el("option", { value: exercise.id, text: exercise.name }),
+          el("option", {
+            value: exercise.id,
+            text: exercise.name,
+            selected: exercise.id === set.exerciseId,
+          }),
         ),
       ),
     ]),
@@ -216,7 +220,7 @@ function syncEditorFromDom(): void {
 
     const select = row.querySelector("select");
     if (select instanceof HTMLSelectElement) {
-      set.exerciseId = select.value;
+      set.exerciseId = select.value || EXERCISES[0].id;
     }
 
     const quantityInput = row.querySelector("[data-quantity-input]");
@@ -530,6 +534,7 @@ type ElAttrs = {
   inputMode?: string;
   title?: string;
   disabled?: boolean;
+  selected?: boolean;
   dataset?: Record<string, string>;
   onClick?: () => void;
   onInput?: (e: Event) => void;
@@ -552,8 +557,10 @@ function el(tag: string, attrs: ElAttrs = {}, children?: ElChildren): HTMLElemen
   if (attrs.className) node.className = attrs.className;
   if (attrs.text && childList.length === 0) node.textContent = attrs.text;
   if (attrs.type) node.setAttribute("type", attrs.type);
-  if (attrs.value !== undefined && !isSelect && node instanceof HTMLInputElement) {
-    node.value = attrs.value;
+  if (attrs.value !== undefined) {
+    if (node instanceof HTMLInputElement || node instanceof HTMLOptionElement) {
+      node.value = attrs.value;
+    }
   }
   if (attrs.min) (node as HTMLInputElement).min = attrs.min;
   if (attrs.max) (node as HTMLInputElement).max = attrs.max;
@@ -561,6 +568,7 @@ function el(tag: string, attrs: ElAttrs = {}, children?: ElChildren): HTMLElemen
   if (attrs.inputMode) (node as HTMLInputElement).inputMode = attrs.inputMode as HTMLInputElement["inputMode"];
   if (attrs.title) node.title = attrs.title;
   if (attrs.disabled) (node as HTMLButtonElement).disabled = attrs.disabled;
+  if (attrs.selected && node instanceof HTMLOptionElement) node.selected = true;
   if (attrs.dataset) {
     Object.entries(attrs.dataset).forEach(([key, value]) => {
       node.dataset[key] = value;
@@ -580,7 +588,9 @@ function el(tag: string, attrs: ElAttrs = {}, children?: ElChildren): HTMLElemen
   }
 
   if (isSelect && attrs.value !== undefined) {
-    (node as HTMLSelectElement).value = attrs.value;
+    const select = node as HTMLSelectElement;
+    const hasOption = Array.from(select.options).some((option) => option.value === attrs.value);
+    select.value = hasOption ? attrs.value : EXERCISES[0].id;
   }
 
   return node;
