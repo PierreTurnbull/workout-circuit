@@ -40,6 +40,7 @@ function createDefaultSet(): ExerciseSet {
     quantityType: "reps",
     reps: 10,
     durationSeconds: 60,
+    quantityInput: "10",
   };
 }
 
@@ -115,11 +116,6 @@ function renderEditor(): void {
 }
 
 function renderSetEditor(set: ExerciseSet, index: number): HTMLElement {
-  const quantityValue =
-    set.quantityType === "reps"
-      ? String(set.reps)
-      : formatDuration(set.durationSeconds);
-
   return el("article", { className: "set-row", dataset: { id: set.id } }, [
     el("div", { className: "set-row-header" }, [
       el("span", { className: "set-index", text: `#${index + 1}` }),
@@ -161,7 +157,8 @@ function renderSetEditor(set: ExerciseSet, index: number): HTMLElement {
         type: "text",
         inputMode: set.quantityType === "reps" ? "numeric" : "text",
         placeholder: set.quantityType === "reps" ? "10" : "1:30",
-        value: quantityValue,
+        value: set.quantityInput,
+        dataset: { quantityInput: "true" },
         onInput: (e) => updateQuantity(set, (e.target as HTMLInputElement).value),
       }),
     ]),
@@ -180,6 +177,8 @@ function quantityTypeButton(
       className: `toggle-btn ${set.quantityType === type ? "active" : ""}`,
       onClick: () => {
         set.quantityType = type;
+        set.quantityInput =
+          type === "reps" ? String(set.reps) : formatDuration(set.durationSeconds);
         render();
       },
     },
@@ -192,6 +191,8 @@ function quantityLabel(type: QuantityType): string {
 }
 
 function updateQuantity(set: ExerciseSet, raw: string): void {
+  set.quantityInput = raw;
+
   if (set.quantityType === "reps") {
     const value = parseInt(raw, 10);
     if (Number.isFinite(value) && value > 0) {
@@ -206,13 +207,40 @@ function updateQuantity(set: ExerciseSet, raw: string): void {
   }
 }
 
+function syncEditorFromDom(): void {
+  if (phase !== "editing") return;
+
+  app.querySelectorAll<HTMLElement>(".set-row").forEach((row) => {
+    const set = circuit.sets.find((item) => item.id === row.dataset.id);
+    if (!set) return;
+
+    const select = row.querySelector("select");
+    if (select instanceof HTMLSelectElement) {
+      set.exerciseId = select.value;
+    }
+
+    const quantityInput = row.querySelector("[data-quantity-input]");
+    if (quantityInput instanceof HTMLInputElement) {
+      updateQuantity(set, quantityInput.value);
+    }
+  });
+
+  const roundsInput = app.querySelector(".rounds-input");
+  if (roundsInput instanceof HTMLInputElement) {
+    const value = parseInt(roundsInput.value, 10);
+    circuit.rounds = Number.isFinite(value) && value >= 1 ? value : 1;
+  }
+}
+
 function addSet(): void {
+  syncEditorFromDom();
   circuit.sets.push(createDefaultSet());
   render();
 }
 
 function removeSet(id: string): void {
   if (circuit.sets.length <= 1) return;
+  syncEditorFromDom();
   circuit.sets = circuit.sets.filter((set) => set.id !== id);
   render();
 }
@@ -220,6 +248,7 @@ function removeSet(id: string): void {
 function startCircuit(): void {
   if (circuit.sets.length === 0) return;
 
+  syncEditorFromDom();
   resetTimer();
   session = {
     circuit: {
@@ -518,14 +547,13 @@ function normalizeChildren(children?: ElChildren): ElChild[] {
 function el(tag: string, attrs: ElAttrs = {}, children?: ElChildren): HTMLElement {
   const node = document.createElement(tag);
   const childList = normalizeChildren(children);
+  const isSelect = tag === "select";
 
   if (attrs.className) node.className = attrs.className;
   if (attrs.text && childList.length === 0) node.textContent = attrs.text;
   if (attrs.type) node.setAttribute("type", attrs.type);
-  if (attrs.value !== undefined) {
-    if (node instanceof HTMLInputElement || node instanceof HTMLSelectElement) {
-      node.value = attrs.value;
-    }
+  if (attrs.value !== undefined && !isSelect && node instanceof HTMLInputElement) {
+    node.value = attrs.value;
   }
   if (attrs.min) (node as HTMLInputElement).min = attrs.min;
   if (attrs.max) (node as HTMLInputElement).max = attrs.max;
@@ -549,6 +577,10 @@ function el(tag: string, attrs: ElAttrs = {}, children?: ElChildren): HTMLElemen
     } else {
       node.appendChild(child);
     }
+  }
+
+  if (isSelect && attrs.value !== undefined) {
+    (node as HTMLSelectElement).value = attrs.value;
   }
 
   return node;

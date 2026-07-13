@@ -11,6 +11,7 @@ export interface ExerciseSet {
   quantityType: QuantityType;
   reps: number;
   durationSeconds: number;
+  quantityInput: string;
 }
 
 export interface Circuit {
