@@ -1,3 +1,9 @@
+import { messages } from "./i18n";
+
+function interpolate(template: string, params: Record<string, string | number>): string {
+  return template.replace(/\{(\w+)\}/g, (_, key: string) => String(params[key] ?? `{${key}}`));
+}
+
 export function createId(): string {
   return crypto.randomUUID();
 }
@@ -30,8 +36,13 @@ export function formatElapsed(ms: number): string {
   const totalSeconds = Math.floor(ms / 1000);
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
-  if (minutes === 0) return `${seconds}s`;
-  return `${minutes}m ${seconds.toString().padStart(2, "0")}s`;
+  if (minutes === 0) {
+    return interpolate(messages.elapsed.seconds, { seconds });
+  }
+  return interpolate(messages.elapsed.minutes, {
+    minutes,
+    seconds: seconds.toString().padStart(2, "0"),
+  });
 }
 
 export function formatQuantity(
@@ -40,7 +51,7 @@ export function formatQuantity(
   durationSeconds: number,
 ): string {
   if (quantityType === "reps") {
-    return `${reps} reps`;
+    return interpolate(messages.quantity.reps, { count: reps });
   }
   return formatDuration(durationSeconds);
 }

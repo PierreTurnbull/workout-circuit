@@ -9,6 +9,20 @@ import type {
 } from "./types";
 import { DEFAULT_EXERCISE_ID, getExerciseName, getGroupedExercises } from "./exercises";
 import {
+  applyDocumentLocale,
+  getLocalePreference,
+  messages,
+  setLocalePreference,
+  tEstimatedMinutes,
+  tGeneratorDuration,
+  tRecapRounds,
+  tRestNextRound,
+  tRoundBadge,
+  tRoundsCompleted,
+  tStoppedAt,
+  type LocalePreference,
+} from "./i18n";
+import {
   estimateCircuitMinutes,
   generateCircuit,
   regenerateExerciseAtIndex,
@@ -78,20 +92,41 @@ function render(): void {
   }
 }
 
+function renderLocalePicker(): HTMLElement {
+  return el("label", { className: "locale-picker" }, [
+    el("span", { className: "locale-picker-label", text: messages.locale.label }),
+    el("select", {
+      className: "input locale-picker-select",
+      value: getLocalePreference(),
+      onChange: (e) => {
+        setLocalePreference((e.target as HTMLSelectElement).value as LocalePreference);
+        render();
+      },
+    }, [
+      el("option", { value: "auto", text: "Auto" }),
+      el("option", { value: "en", text: "English" }),
+      el("option", { value: "fr", text: "Français" }),
+    ]),
+  ]);
+}
+
 function renderEditor(): void {
   const container = el("div", { className: "screen editor-screen" });
 
   container.append(
-    el("header", { className: "screen-header" }, [
-      el("h1", { text: "Build your circuit" }),
-      el("p", {
-        className: "subtitle",
-        text: "Generate a balanced workout in one tap, or build your own.",
-      }),
+    el("header", { className: "screen-header screen-header-with-locale" }, [
+      el("div", { className: "screen-header-main" }, [
+        el("h1", { text: messages.editor.title }),
+        el("p", {
+          className: "subtitle",
+          text: messages.editor.subtitle,
+        }),
+      ]),
+      renderLocalePicker(),
     ]),
     renderGeneratorCard(),
     el("section", { className: "card" }, [
-      el("h2", { className: "section-title", text: "Exercise sets" }),
+      el("h2", { className: "section-title", text: messages.editor.exerciseSets }),
       ...circuit.sets.map((set, index) => renderSetEditor(set, index)),
       el(
         "button",
@@ -99,11 +134,11 @@ function renderEditor(): void {
           className: "btn btn-secondary btn-block",
           onClick: addSet,
         },
-        "+ Add exercise",
+        messages.editor.addExercise,
       ),
     ]),
     el("section", { className: "card rounds-card" }, [
-      el("label", { className: "field-label", text: "Number of rounds" }),
+      el("label", { className: "field-label", text: messages.editor.rounds }),
       el("input", {
         className: "input rounds-input",
         type: "number",
@@ -115,7 +150,7 @@ function renderEditor(): void {
           circuit.rounds = Number.isFinite(value) && value >= 1 ? value : 1;
         },
       }),
-      el("label", { className: "field-label", text: "Rest between rounds (optional)" }, [
+      el("label", { className: "field-label", text: messages.editor.restBetweenRounds }, [
         el("input", {
           className: "input rest-input",
           type: "text",
@@ -133,7 +168,7 @@ function renderEditor(): void {
         onClick: startCircuit,
         disabled: circuit.sets.length === 0,
       },
-      "Start circuit",
+      messages.editor.startCircuit,
     ),
   );
 
@@ -150,19 +185,19 @@ function renderGeneratorCard(): HTMLElement {
     : null;
 
   return el("section", { className: "card generator-card" }, [
-    el("h2", { className: "section-title", text: "Quick circuit" }),
-    el("p", { className: "generator-copy", text: "Balanced full-body workouts that feel fresh every time." }),
-    el("p", { className: "field-label", text: "Duration" }),
+    el("h2", { className: "section-title", text: messages.generator.title }),
+    el("p", { className: "generator-copy", text: messages.generator.copy }),
+    el("p", { className: "field-label", text: messages.generator.duration }),
     el("div", { className: "chip-group" }, [
       durationChip(15),
       durationChip(20),
       durationChip(30),
     ]),
-    el("p", { className: "field-label", text: "Intensity" }),
+    el("p", { className: "field-label", text: messages.generator.intensity }),
     el("div", { className: "chip-group" }, [
-      intensityChip("light", "Light"),
-      intensityChip("moderate", "Balanced"),
-      intensityChip("intense", "Intense"),
+      intensityChip("light", messages.generator.light),
+      intensityChip("moderate", messages.generator.balanced),
+      intensityChip("intense", messages.generator.intense),
     ]),
     el(
       "button",
@@ -170,12 +205,12 @@ function renderGeneratorCard(): HTMLElement {
         className: "btn btn-accent btn-block btn-lg",
         onClick: applyGeneratedCircuit,
       },
-      lastGeneratedOptions ? "Regenerate circuit" : "Generate circuit",
+      lastGeneratedOptions ? messages.generator.regenerate : messages.generator.generate,
     ),
     lastGeneratedOptions && previewMinutes
       ? el("p", {
           className: "generator-meta",
-          text: `~${previewMinutes} min estimated`,
+          text: tEstimatedMinutes(previewMinutes),
         })
       : null,
   ]);
@@ -192,7 +227,7 @@ function durationChip(duration: CircuitDuration): HTMLElement {
         render();
       },
     },
-    `${duration} min`,
+    tGeneratorDuration(duration),
   );
 }
 
@@ -250,7 +285,7 @@ function renderSetEditor(set: ExerciseSet, index: number): HTMLElement {
           "button",
           {
             className: "btn-icon shuffle-btn",
-            title: "Shuffle exercise",
+            title: messages.set.shuffle,
             onClick: () => shuffleExercise(set.id),
           },
           "↻",
@@ -259,7 +294,7 @@ function renderSetEditor(set: ExerciseSet, index: number): HTMLElement {
           "button",
           {
             className: "btn-icon",
-            title: "Remove exercise",
+            title: messages.set.remove,
             onClick: () => removeSet(set.id),
             disabled: circuit.sets.length === 1,
           },
@@ -268,7 +303,7 @@ function renderSetEditor(set: ExerciseSet, index: number): HTMLElement {
       ]),
     ]),
     el("label", { className: "field-label" }, [
-      "Exercise",
+      messages.set.exercise,
       el(
         "select",
         {
@@ -285,7 +320,7 @@ function renderSetEditor(set: ExerciseSet, index: number): HTMLElement {
             group.exercises.map((exercise) =>
               el("option", {
                 value: exercise.id,
-                text: exercise.name,
+                text: getExerciseName(exercise.id),
                 selected: exercise.id === set.exerciseId,
               }),
             ),
@@ -294,8 +329,8 @@ function renderSetEditor(set: ExerciseSet, index: number): HTMLElement {
       ),
     ]),
     el("div", { className: "quantity-type-toggle" }, [
-      quantityTypeButton(set, "reps", "Reps"),
-      quantityTypeButton(set, "duration", "Duration"),
+      quantityTypeButton(set, "reps", messages.set.reps),
+      quantityTypeButton(set, "duration", messages.set.duration),
     ]),
     el("label", { className: "field-label" }, [
       quantityLabel(set.quantityType),
@@ -334,7 +369,7 @@ function quantityTypeButton(
 }
 
 function quantityLabel(type: QuantityType): string {
-  return type === "reps" ? "Repetitions" : "Duration (mm:ss or seconds)";
+  return type === "reps" ? messages.set.repetitions : messages.set.durationHint;
 }
 
 function updateQuantity(set: ExerciseSet, raw: string): void {
@@ -443,14 +478,15 @@ function renderRunner(): void {
   const container = el("div", { className: "screen runner-screen" });
 
   container.append(
+    renderLocalePicker(),
     el("header", { className: "screen-header runner-header" }, [
       el(
         "div",
         {
           className: `round-badge ${isResting ? "rest-badge" : ""}`,
           text: isResting
-            ? `Rest · Round ${currentRound + 1} next`
-            : `Round ${currentRound} / ${activeCircuit.rounds}`,
+            ? tRestNextRound(currentRound + 1)
+            : tRoundBadge(currentRound, activeCircuit.rounds),
         },
       ),
       el("p", {
@@ -459,7 +495,7 @@ function renderRunner(): void {
       }),
     ]),
     el("section", { className: "card overview-card" }, [
-      el("h2", { className: "section-title", text: "Circuit overview" }),
+      el("h2", { className: "section-title", text: messages.runner.overview }),
       el(
         "ul",
         { className: "overview-list" },
@@ -488,8 +524,8 @@ function renderRunner(): void {
     ]),
     isResting
       ? el("section", { className: "card current-exercise-card rest-card" }, [
-          el("p", { className: "current-label", text: "Recovery" }),
-          el("h2", { className: "current-name", text: "Rest between rounds" }),
+          el("p", { className: "current-label", text: messages.runner.recovery }),
+          el("h2", { className: "current-name", text: messages.runner.restBetweenRounds }),
           el("p", {
             className: "current-qty",
             text: formatDuration(activeCircuit.restBetweenRoundsSeconds),
@@ -503,7 +539,7 @@ function renderRunner(): void {
         className: "btn btn-ghost btn-block",
         onClick: finishCircuit,
       },
-      "Finish circuit",
+      messages.runner.finishCircuit,
     ),
     el(
       "button",
@@ -511,7 +547,7 @@ function renderRunner(): void {
         className: "btn btn-ghost btn-block",
         onClick: backToEditor,
       },
-      "← Back to editor",
+      messages.runner.backToEditor,
     ),
   );
 
@@ -522,7 +558,7 @@ function renderActiveExerciseCard(currentSet: ExerciseSet): HTMLElement {
   const isDuration = currentSet.quantityType === "duration";
 
   return el("section", { className: "card current-exercise-card" }, [
-    el("p", { className: "current-label", text: "Current exercise" }),
+    el("p", { className: "current-label", text: messages.runner.currentExercise }),
     el("h2", {
       className: "current-name",
       text: getExerciseName(currentSet.exerciseId),
@@ -550,8 +586,8 @@ function renderRestPanel(): HTMLElement {
       text: formatDuration(displaySeconds),
     }),
     timer.finished
-      ? el("p", { className: "timer-done-msg", text: "Rest complete!" })
-      : el("p", { className: "rest-hint", text: "Recover before the next round." }),
+      ? el("p", { className: "timer-done-msg", text: messages.runner.restComplete })
+      : el("p", { className: "rest-hint", text: messages.runner.restHint }),
     timer.finished
       ? el(
           "button",
@@ -559,7 +595,7 @@ function renderRestPanel(): HTMLElement {
             className: "btn btn-accent btn-block btn-lg",
             onClick: completeRest,
           },
-          "Start next round",
+          messages.runner.startNextRound,
         )
       : null,
   ]);
@@ -577,7 +613,7 @@ function renderTimerPanel(set: ExerciseSet, onComplete: () => void): HTMLElement
       text: formatDuration(displaySeconds),
     }),
     timer.finished
-      ? el("p", { className: "timer-done-msg", text: "Time's up!" })
+      ? el("p", { className: "timer-done-msg", text: messages.runner.timesUp })
       : null,
     !timer.running && !timer.finished
       ? el(
@@ -586,7 +622,7 @@ function renderTimerPanel(set: ExerciseSet, onComplete: () => void): HTMLElement
             className: "btn btn-primary btn-block btn-lg",
             onClick: () => startTimer(set.durationSeconds),
           },
-          "Start timer",
+          messages.runner.startTimer,
         )
       : null,
     canContinue
@@ -596,7 +632,7 @@ function renderTimerPanel(set: ExerciseSet, onComplete: () => void): HTMLElement
             className: "btn btn-accent btn-block btn-lg",
             onClick: onComplete,
           },
-          "Continue",
+          messages.runner.continue,
         )
       : null,
   ]);
@@ -610,7 +646,7 @@ function renderRepsPanel(): HTMLElement {
         className: "btn btn-accent btn-block btn-lg",
         onClick: completeCurrentExercise,
       },
-      "Mark as done",
+      messages.runner.markDone,
     ),
   ]);
 }
@@ -727,37 +763,38 @@ function renderCompletion(): void {
   const container = el("div", { className: "screen completion-screen" });
 
   container.append(
+    renderLocalePicker(),
     el("header", { className: "completion-header" }, [
       el("div", { className: "completion-icon", text: "🎉" }),
-      el("h1", { text: finishedEarly ? "Circuit finished!" : "Circuit complete!" }),
+      el("h1", { text: finishedEarly ? messages.completion.finishedTitle : messages.completion.completeTitle }),
       el("p", {
         className: "subtitle",
         text: finishedEarly
-          ? "Nice work — here's your recap so far."
-          : "Great work — you finished every round.",
+          ? messages.completion.finishedSubtitle
+          : messages.completion.completeSubtitle,
       }),
     ]),
     el("section", { className: "card stats-card" }, [
       el("div", { className: "stat" }, [
-        el("span", { className: "stat-label", text: "Total time" }),
+        el("span", { className: "stat-label", text: messages.completion.totalTime }),
         el("span", { className: "stat-value", text: formatElapsed(totalMs) }),
       ]),
       el("div", { className: "stat" }, [
-        el("span", { className: "stat-label", text: "Rounds completed" }),
+        el("span", { className: "stat-label", text: messages.completion.roundsCompleted }),
         el("span", {
           className: "stat-value",
           text: finishedEarly
-            ? `${fullRoundsCompleted} of ${activeCircuit.rounds}`
+            ? tRoundsCompleted(fullRoundsCompleted, activeCircuit.rounds)
             : String(activeCircuit.rounds),
         }),
       ]),
       el("div", { className: "stat" }, [
-        el("span", { className: "stat-label", text: "Exercises per round" }),
+        el("span", { className: "stat-label", text: messages.completion.exercisesPerRound }),
         el("span", { className: "stat-value", text: String(activeCircuit.sets.length) }),
       ]),
       activeCircuit.restBetweenRoundsSeconds > 0
         ? el("div", { className: "stat" }, [
-            el("span", { className: "stat-label", text: "Rest between rounds" }),
+            el("span", { className: "stat-label", text: messages.completion.restBetweenRounds }),
             el("span", {
               className: "stat-value",
               text: formatDuration(activeCircuit.restBetweenRoundsSeconds),
@@ -766,24 +803,21 @@ function renderCompletion(): void {
         : null,
       stoppedMidRound && stoppedExercise
         ? el("div", { className: "stat" }, [
-            el("span", { className: "stat-label", text: "Stopped at" }),
+            el("span", { className: "stat-label", text: messages.completion.stoppedAt }),
             el("span", {
               className: "stat-value",
-              text: `Round ${currentRound}, ${getExerciseName(stoppedExercise.exerciseId)}`,
+              text: tStoppedAt(currentRound, getExerciseName(stoppedExercise.exerciseId)),
             }),
           ])
         : null,
     ]),
     el("section", { className: "card recap-card" }, [
-      el("h2", { className: "section-title", text: "Recap" }),
+      el("h2", { className: "section-title", text: messages.completion.recap }),
       el(
         "ul",
         { className: "recap-list" },
         activeCircuit.sets.map((set) => {
-          const roundsLabel =
-            fullRoundsCompleted > 0
-              ? `${fullRoundsCompleted} round${fullRoundsCompleted === 1 ? "" : "s"}`
-              : "planned circuit";
+          const roundsLabel = tRecapRounds(fullRoundsCompleted);
 
           return el("li", { className: "recap-item" }, [
             el("span", { text: getExerciseName(set.exerciseId) }),
@@ -807,7 +841,7 @@ function renderCompletion(): void {
           render();
         },
       },
-      "Build a new circuit",
+      messages.completion.buildNew,
     ),
   );
 
@@ -905,5 +939,6 @@ function stopElapsedTicker(): void {
   }
 }
 
+applyDocumentLocale();
 render();
 registerSW({ immediate: true });
