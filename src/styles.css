@@ -103,6 +103,68 @@ body {
   margin-bottom: 0.65rem;
 }
 
+.set-row-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.generator-card {
+  border-color: rgba(52, 211, 153, 0.25);
+}
+
+.generator-copy {
+  margin: 0 0 0.85rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.generator-meta {
+  margin: 0.75rem 0 0;
+  color: var(--accent);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.chip-btn {
+  flex: 1 1 0;
+  min-width: 4.5rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--text-muted);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.chip-btn.active {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.generator-card .chip-btn.active {
+  background: rgba(52, 211, 153, 0.15);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.shuffle-btn:hover:not(:disabled) {
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--primary);
+}
+
 .set-index {
   font-size: 0.8rem;
   font-weight: 600;
@@ -129,6 +191,17 @@ select.input {
   color: var(--text);
   font: inherit;
   font-size: 1rem;
+}
+
+select.input {
+  padding-right: 2.25rem;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: var(--bg);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M5 7.5L10 12.5L15 7.5' stroke='%2394a3b8' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
 }
 
 .input:focus,

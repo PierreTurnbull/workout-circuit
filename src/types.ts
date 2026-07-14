@@ -1,8 +1,11 @@
 export type QuantityType = "reps" | "duration";
 
+export type ExerciseGroup = "cardio" | "lower" | "upper" | "core" | "finisher";
+
 export interface Exercise {
   id: string;
   name: string;
+  group: ExerciseGroup;
 }
 
 export interface ExerciseSet {

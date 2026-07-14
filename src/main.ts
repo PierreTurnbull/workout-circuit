@@ -7,7 +7,15 @@ import type {
   TimerState,
   WorkoutSession,
 } from "./types";
-import { EXERCISES, getExerciseName } from "./exercises";
+import { DEFAULT_EXERCISE_ID, getExerciseName, getGroupedExercises } from "./exercises";
+import {
+  estimateCircuitMinutes,
+  generateCircuit,
+  regenerateExerciseAtIndex,
+  type CircuitDuration,
+  type CircuitIntensity,
+  type GeneratorOptions,
+} from "./generator";
 import { playTimerDoneAlert } from "./alerts";
 import {
   createId,
@@ -35,10 +43,14 @@ let timer: TimerState = {
 };
 let timerInterval: number | null = null;
 
+let generatorDuration: CircuitDuration = 20;
+let generatorIntensity: CircuitIntensity = "moderate";
+let lastGeneratedOptions: GeneratorOptions | null = null;
+
 function createDefaultSet(): ExerciseSet {
   return {
     id: createId(),
-    exerciseId: EXERCISES[0].id,
+    exerciseId: DEFAULT_EXERCISE_ID,
     quantityType: "reps",
     reps: 10,
     durationSeconds: 60,
@@ -74,9 +86,10 @@ function renderEditor(): void {
       el("h1", { text: "Build your circuit" }),
       el("p", {
         className: "subtitle",
-        text: "Add exercises, set quantities, and choose how many rounds to complete.",
+        text: "Generate a balanced workout in one tap, or build your own.",
       }),
     ]),
+    renderGeneratorCard(),
     el("section", { className: "card" }, [
       el("h2", { className: "section-title", text: "Exercise sets" }),
       ...circuit.sets.map((set, index) => renderSetEditor(set, index)),
@@ -127,20 +140,132 @@ function renderEditor(): void {
   app.append(container);
 }
 
+function renderGeneratorCard(): HTMLElement {
+  const previewMinutes = lastGeneratedOptions
+    ? estimateCircuitMinutes(
+        circuit.sets,
+        circuit.rounds,
+        circuit.restBetweenRoundsSeconds,
+      )
+    : null;
+
+  return el("section", { className: "card generator-card" }, [
+    el("h2", { className: "section-title", text: "Quick circuit" }),
+    el("p", { className: "generator-copy", text: "Balanced full-body workouts that feel fresh every time." }),
+    el("p", { className: "field-label", text: "Duration" }),
+    el("div", { className: "chip-group" }, [
+      durationChip(15),
+      durationChip(20),
+      durationChip(30),
+    ]),
+    el("p", { className: "field-label", text: "Intensity" }),
+    el("div", { className: "chip-group" }, [
+      intensityChip("light", "Light"),
+      intensityChip("moderate", "Balanced"),
+      intensityChip("intense", "Intense"),
+    ]),
+    el(
+      "button",
+      {
+        className: "btn btn-accent btn-block btn-lg",
+        onClick: applyGeneratedCircuit,
+      },
+      lastGeneratedOptions ? "Regenerate circuit" : "Generate circuit",
+    ),
+    lastGeneratedOptions && previewMinutes
+      ? el("p", {
+          className: "generator-meta",
+          text: `~${previewMinutes} min estimated`,
+        })
+      : null,
+  ]);
+}
+
+function durationChip(duration: CircuitDuration): HTMLElement {
+  return el(
+    "button",
+    {
+      type: "button",
+      className: `chip-btn ${generatorDuration === duration ? "active" : ""}`,
+      onClick: () => {
+        generatorDuration = duration;
+        render();
+      },
+    },
+    `${duration} min`,
+  );
+}
+
+function intensityChip(intensity: CircuitIntensity, label: string): HTMLElement {
+  return el(
+    "button",
+    {
+      type: "button",
+      className: `chip-btn ${generatorIntensity === intensity ? "active" : ""}`,
+      onClick: () => {
+        generatorIntensity = intensity;
+        render();
+      },
+    },
+    label,
+  );
+}
+
+function currentGeneratorOptions(): GeneratorOptions {
+  return {
+    duration: generatorDuration,
+    intensity: generatorIntensity,
+  };
+}
+
+function applyGeneratedCircuit(): void {
+  const options = currentGeneratorOptions();
+  const generated = generateCircuit(options);
+
+  circuit.sets = generated.sets;
+  circuit.rounds = generated.rounds;
+  circuit.restBetweenRoundsSeconds = generated.restBetweenRoundsSeconds;
+  circuit.restBetweenRoundsInput = generated.restBetweenRoundsInput;
+  lastGeneratedOptions = options;
+  render();
+}
+
+function shuffleExercise(setId: string): void {
+  syncEditorFromDom();
+
+  const index = circuit.sets.findIndex((set) => set.id === setId);
+  if (index === -1) return;
+
+  const options = lastGeneratedOptions ?? currentGeneratorOptions();
+  circuit.sets[index] = regenerateExerciseAtIndex(index, circuit.sets, options);
+  render();
+}
+
 function renderSetEditor(set: ExerciseSet, index: number): HTMLElement {
   return el("article", { className: "set-row", dataset: { id: set.id } }, [
     el("div", { className: "set-row-header" }, [
       el("span", { className: "set-index", text: `#${index + 1}` }),
-      el(
-        "button",
-        {
-          className: "btn-icon",
-          title: "Remove exercise",
-          onClick: () => removeSet(set.id),
-          disabled: circuit.sets.length === 1,
-        },
-        "×",
-      ),
+      el("div", { className: "set-row-actions" }, [
+        el(
+          "button",
+          {
+            className: "btn-icon shuffle-btn",
+            title: "Shuffle exercise",
+            onClick: () => shuffleExercise(set.id),
+          },
+          "↻",
+        ),
+        el(
+          "button",
+          {
+            className: "btn-icon",
+            title: "Remove exercise",
+            onClick: () => removeSet(set.id),
+            disabled: circuit.sets.length === 1,
+          },
+          "×",
+        ),
+      ]),
     ]),
     el("label", { className: "field-label" }, [
       "Exercise",
@@ -153,12 +278,18 @@ function renderSetEditor(set: ExerciseSet, index: number): HTMLElement {
             set.exerciseId = (e.target as HTMLSelectElement).value;
           },
         },
-        EXERCISES.map((exercise) =>
-          el("option", {
-            value: exercise.id,
-            text: exercise.name,
-            selected: exercise.id === set.exerciseId,
-          }),
+        getGroupedExercises().map((group) =>
+          el(
+            "optgroup",
+            { label: group.label },
+            group.exercises.map((exercise) =>
+              el("option", {
+                value: exercise.id,
+                text: exercise.name,
+                selected: exercise.id === set.exerciseId,
+              }),
+            ),
+          ),
         ),
       ),
     ]),
@@ -246,7 +377,7 @@ function syncEditorFromDom(): void {
 
     const select = row.querySelector("select");
     if (select instanceof HTMLSelectElement) {
-      set.exerciseId = select.value || EXERCISES[0].id;
+      set.exerciseId = select.value || DEFAULT_EXERCISE_ID;
     }
 
     const quantityInput = row.querySelector("[data-quantity-input]");
@@ -693,6 +824,7 @@ type ElAttrs = {
   placeholder?: string;
   inputMode?: string;
   title?: string;
+  label?: string;
   disabled?: boolean;
   selected?: boolean;
   dataset?: Record<string, string>;
@@ -727,6 +859,7 @@ function el(tag: string, attrs: ElAttrs = {}, children?: ElChildren): HTMLElemen
   if (attrs.placeholder) (node as HTMLInputElement).placeholder = attrs.placeholder;
   if (attrs.inputMode) (node as HTMLInputElement).inputMode = attrs.inputMode as HTMLInputElement["inputMode"];
   if (attrs.title) node.title = attrs.title;
+  if (attrs.label && node instanceof HTMLOptGroupElement) node.label = attrs.label;
   if (attrs.disabled) (node as HTMLButtonElement).disabled = attrs.disabled;
   if (attrs.selected && node instanceof HTMLOptionElement) node.selected = true;
   if (attrs.dataset) {
@@ -750,7 +883,7 @@ function el(tag: string, attrs: ElAttrs = {}, children?: ElChildren): HTMLElemen
   if (isSelect && attrs.value !== undefined) {
     const select = node as HTMLSelectElement;
     const hasOption = Array.from(select.options).some((option) => option.value === attrs.value);
-    select.value = hasOption ? attrs.value : EXERCISES[0].id;
+    select.value = hasOption ? attrs.value : DEFAULT_EXERCISE_ID;
   }
 
   return node;
