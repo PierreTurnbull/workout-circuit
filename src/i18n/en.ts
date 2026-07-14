@@ -68,6 +68,11 @@ export const en: Messages = {
     continue: "Continue",
     markDone: "Mark as done",
     finishCircuit: "Finish circuit",
+    finishCircuitConfirmTitle: "Finish circuit?",
+    finishCircuitConfirmMessage:
+      "Your progress will be saved, but the circuit will end before all rounds are done.",
+    finishCircuitConfirmAction: "Yes, finish circuit",
+    finishCircuitCancel: "Keep going",
     backToEditor: "← Back to editor",
   },
   completion: {

@@ -68,6 +68,8 @@ let generatorIntensity: CircuitIntensity = "moderate";
 let lastGeneratedOptions: GeneratorOptions | null = null;
 let openGuideExerciseId: string | null = null;
 let guideEscapeHandler: ((event: KeyboardEvent) => void) | null = null;
+let showFinishConfirm = false;
+let finishConfirmEscapeHandler: ((event: KeyboardEvent) => void) | null = null;
 
 function createDefaultSet(): ExerciseSet {
   return {
@@ -100,6 +102,7 @@ function render(): void {
   }
 
   renderGuideOverlay();
+  renderFinishConfirmOverlay();
 }
 
 function openExerciseGuide(exerciseId: string): void {
@@ -114,6 +117,89 @@ function closeExerciseGuide(): void {
   if (guideEscapeHandler) {
     document.removeEventListener("keydown", guideEscapeHandler);
     guideEscapeHandler = null;
+  }
+}
+
+function openFinishConfirm(): void {
+  showFinishConfirm = true;
+  renderFinishConfirmOverlay();
+}
+
+function closeFinishConfirm(): void {
+  showFinishConfirm = false;
+  removeFinishConfirmOverlay();
+  if (finishConfirmEscapeHandler) {
+    document.removeEventListener("keydown", finishConfirmEscapeHandler);
+    finishConfirmEscapeHandler = null;
+  }
+}
+
+function removeFinishConfirmOverlay(): void {
+  document.getElementById("finish-confirm-overlay")?.remove();
+}
+
+function renderFinishConfirmOverlay(): void {
+  removeFinishConfirmOverlay();
+  if (!showFinishConfirm) return;
+
+  const overlay = el(
+    "div",
+    {
+      id: "finish-confirm-overlay",
+      className: "confirm-overlay",
+      role: "alertdialog",
+      ariaLabel: messages.runner.finishCircuitConfirmTitle,
+    },
+    [
+      el("button", {
+        type: "button",
+        className: "confirm-backdrop",
+        ariaLabel: messages.runner.finishCircuitCancel,
+        onClick: closeFinishConfirm,
+      }),
+      el("div", { className: "confirm-sheet" }, [
+        el("h2", {
+          className: "confirm-title",
+          text: messages.runner.finishCircuitConfirmTitle,
+        }),
+        el("p", {
+          className: "confirm-message",
+          text: messages.runner.finishCircuitConfirmMessage,
+        }),
+        el("div", { className: "confirm-actions" }, [
+          el(
+            "button",
+            {
+              type: "button",
+              className: "btn btn-accent btn-block btn-lg",
+              onClick: closeFinishConfirm,
+            },
+            messages.runner.finishCircuitCancel,
+          ),
+          el(
+            "button",
+            {
+              type: "button",
+              className: "btn btn-ghost btn-block",
+              onClick: () => {
+                closeFinishConfirm();
+                finishCircuit();
+              },
+            },
+            messages.runner.finishCircuitConfirmAction,
+          ),
+        ]),
+      ]),
+    ],
+  );
+
+  document.body.appendChild(overlay);
+
+  if (!finishConfirmEscapeHandler) {
+    finishConfirmEscapeHandler = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeFinishConfirm();
+    };
+    document.addEventListener("keydown", finishConfirmEscapeHandler);
   }
 }
 
@@ -647,7 +733,7 @@ function renderRunner(): void {
       "button",
       {
         className: "btn btn-ghost btn-block",
-        onClick: finishCircuit,
+        onClick: openFinishConfirm,
       },
       messages.runner.finishCircuit,
     ),
@@ -841,6 +927,7 @@ function completeRest(): void {
 function finishCircuit(): void {
   if (!session) return;
 
+  closeFinishConfirm();
   resetTimer();
   session.completedAt = Date.now();
   session.finishedEarly = true;
@@ -850,6 +937,7 @@ function finishCircuit(): void {
 }
 
 function backToEditor(): void {
+  closeFinishConfirm();
   resetTimer();
   stopElapsedTicker();
   phase = "editing";

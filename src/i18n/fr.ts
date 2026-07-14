@@ -68,6 +68,11 @@ export const fr: Messages = {
     continue: "Continuer",
     markDone: "Marquer comme fait",
     finishCircuit: "Terminer le circuit",
+    finishCircuitConfirmTitle: "Terminer le circuit ?",
+    finishCircuitConfirmMessage:
+      "Votre progression sera enregistrée, mais le circuit s'arrêtera avant la fin de tous les tours.",
+    finishCircuitConfirmAction: "Oui, terminer",
+    finishCircuitCancel: "Continuer",
     backToEditor: "← Retour à l'éditeur",
   },
   completion: {

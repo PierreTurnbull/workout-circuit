@@ -61,6 +61,10 @@ export interface Messages {
     continue: string;
     markDone: string;
     finishCircuit: string;
+    finishCircuitConfirmTitle: string;
+    finishCircuitConfirmMessage: string;
+    finishCircuitConfirmAction: string;
+    finishCircuitCancel: string;
     backToEditor: string;
   };
   completion: {
