@@ -216,6 +216,136 @@ body {
   color: var(--text-muted);
 }
 
+.field-label-row,
+.current-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.current-name-row {
+  margin-bottom: 0.35rem;
+}
+
+.current-name-row .current-name {
+  margin: 0;
+  min-width: 0;
+}
+
+.exercise-info-btn {
+  flex-shrink: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-style: italic;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.exercise-info-btn:hover:not(:disabled) {
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--primary);
+}
+
+.guide-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 1rem;
+  padding-bottom: calc(1rem + var(--safe-bottom));
+}
+
+.guide-backdrop {
+  position: absolute;
+  inset: 0;
+  border: none;
+  background: rgba(15, 23, 42, 0.72);
+  cursor: pointer;
+}
+
+.guide-sheet {
+  position: relative;
+  width: min(100%, 480px);
+  max-height: min(80dvh, 640px);
+  overflow: auto;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow);
+}
+
+.guide-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.guide-title {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.guide-gif-search {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 1rem;
+  color: var(--primary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.guide-gif-search:hover {
+  text-decoration: underline;
+}
+
+.guide-close-btn:hover:not(:disabled) {
+  background: rgba(148, 163, 184, 0.15);
+  color: var(--text);
+}
+
+.guide-summary {
+  margin: 0 0 1rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.guide-steps-title {
+  margin: 0 0 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--primary);
+}
+
+.guide-steps {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.guide-steps li {
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+@media (min-width: 480px) {
+  .guide-overlay {
+    align-items: center;
+  }
+}
+
 .input,
 select.input {
   display: block;

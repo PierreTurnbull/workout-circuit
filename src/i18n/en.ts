@@ -1,5 +1,6 @@
 import type { Messages } from "./types";
 import { exerciseNamesEn } from "./exercises/en";
+import { exerciseGuidesEn } from "./guides/en";
 
 export const en: Messages = {
   appTitle: "Workout Circuit",
@@ -15,6 +16,13 @@ export const en: Messages = {
     finisher: "Full-body finishers",
   },
   exercises: exerciseNamesEn,
+  guides: exerciseGuidesEn,
+  guide: {
+    viewGuide: "How to do this exercise",
+    howTo: "How to",
+    close: "Close",
+    viewGifDemos: "View GIF demos on Google Images",
+  },
   editor: {
     title: "Build your circuit",
     subtitle: "Generate a balanced workout in one tap, or build your own.",

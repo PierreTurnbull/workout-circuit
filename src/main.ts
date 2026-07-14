@@ -8,12 +8,14 @@ import type {
   WorkoutSession,
 } from "./types";
 import { DEFAULT_EXERCISE_ID, getExerciseName, getGroupedExercises } from "./exercises";
+import { getExerciseGifSearchUrl } from "./exercise-search";
 import {
   applyDocumentLocale,
   getLocalePreference,
   messages,
   setLocalePreference,
   tEstimatedMinutes,
+  tExerciseGuide,
   tGeneratorDuration,
   tRecapRounds,
   tRestNextRound,
@@ -60,6 +62,8 @@ let timerInterval: number | null = null;
 let generatorDuration: CircuitDuration = 20;
 let generatorIntensity: CircuitIntensity = "moderate";
 let lastGeneratedOptions: GeneratorOptions | null = null;
+let openGuideExerciseId: string | null = null;
+let guideEscapeHandler: ((event: KeyboardEvent) => void) | null = null;
 
 function createDefaultSet(): ExerciseSet {
   return {
@@ -90,6 +94,114 @@ function render(): void {
   } else if (phase === "completed" && session) {
     renderCompletion();
   }
+
+  renderGuideOverlay();
+}
+
+function openExerciseGuide(exerciseId: string): void {
+  if (!tExerciseGuide(exerciseId)) return;
+  openGuideExerciseId = exerciseId;
+  renderGuideOverlay();
+}
+
+function closeExerciseGuide(): void {
+  openGuideExerciseId = null;
+  removeGuideOverlay();
+  if (guideEscapeHandler) {
+    document.removeEventListener("keydown", guideEscapeHandler);
+    guideEscapeHandler = null;
+  }
+}
+
+function removeGuideOverlay(): void {
+  document.getElementById("exercise-guide-overlay")?.remove();
+}
+
+function renderGuideOverlay(): void {
+  removeGuideOverlay();
+  if (!openGuideExerciseId) return;
+
+  const guide = tExerciseGuide(openGuideExerciseId);
+  if (!guide) return;
+
+  const exerciseName = getExerciseName(openGuideExerciseId);
+  const gifSearchUrl = getExerciseGifSearchUrl(exerciseName);
+
+  const overlay = el(
+    "div",
+    {
+      id: "exercise-guide-overlay",
+      className: "guide-overlay",
+      role: "dialog",
+      ariaLabel: getExerciseName(openGuideExerciseId),
+    },
+    [
+      el("button", {
+        type: "button",
+        className: "guide-backdrop",
+        ariaLabel: messages.guide.close,
+        onClick: closeExerciseGuide,
+      }),
+      el("div", { className: "guide-sheet" }, [
+        el("header", { className: "guide-header" }, [
+          el("h2", {
+            className: "guide-title",
+            text: getExerciseName(openGuideExerciseId),
+          }),
+          el(
+            "button",
+            {
+              type: "button",
+              className: "btn-icon guide-close-btn",
+              ariaLabel: messages.guide.close,
+              onClick: closeExerciseGuide,
+            },
+            "×",
+          ),
+        ]),
+        el("p", { className: "guide-summary", text: guide.summary }),
+        el(
+          "a",
+          {
+            className: "guide-gif-search",
+            href: gifSearchUrl,
+            text: messages.guide.viewGifDemos,
+          },
+        ),
+        el("h3", { className: "guide-steps-title", text: messages.guide.howTo }),
+        el(
+          "ol",
+          { className: "guide-steps" },
+          guide.steps.map((step) => el("li", { text: step })),
+        ),
+      ]),
+    ],
+  );
+
+  document.body.appendChild(overlay);
+
+  if (!guideEscapeHandler) {
+    guideEscapeHandler = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeExerciseGuide();
+    };
+    document.addEventListener("keydown", guideEscapeHandler);
+  }
+}
+
+function renderExerciseInfoButton(exerciseId: string): HTMLElement | null {
+  if (!tExerciseGuide(exerciseId)) return null;
+
+  return el(
+    "button",
+    {
+      type: "button",
+      className: "btn-icon exercise-info-btn",
+      title: messages.guide.viewGuide,
+      ariaLabel: messages.guide.viewGuide,
+      onClick: () => openExerciseGuide(exerciseId),
+    },
+    "i",
+  );
 }
 
 function renderLocalePicker(): HTMLElement {
@@ -303,14 +415,18 @@ function renderSetEditor(set: ExerciseSet, index: number): HTMLElement {
       ]),
     ]),
     el("label", { className: "field-label" }, [
-      messages.set.exercise,
+      el("div", { className: "field-label-row" }, [
+        el("span", { text: messages.set.exercise }),
+        renderExerciseInfoButton(set.exerciseId),
+      ]),
       el(
         "select",
         {
           className: "input",
           value: set.exerciseId,
-          onChange: (e) => {
-            set.exerciseId = (e.target as HTMLSelectElement).value;
+          onChange: () => {
+            syncEditorFromDom();
+            render();
           },
         },
         getGroupedExercises().map((group) =>
@@ -559,10 +675,13 @@ function renderActiveExerciseCard(currentSet: ExerciseSet): HTMLElement {
 
   return el("section", { className: "card current-exercise-card" }, [
     el("p", { className: "current-label", text: messages.runner.currentExercise }),
-    el("h2", {
-      className: "current-name",
-      text: getExerciseName(currentSet.exerciseId),
-    }),
+    el("div", { className: "current-name-row" }, [
+      el("h2", {
+        className: "current-name",
+        text: getExerciseName(currentSet.exerciseId),
+      }),
+      renderExerciseInfoButton(currentSet.exerciseId),
+    ]),
     el("p", {
       className: "current-qty",
       text: formatQuantity(
@@ -849,16 +968,22 @@ function renderCompletion(): void {
 }
 
 type ElAttrs = {
+  id?: string;
   className?: string;
   text?: string;
   type?: string;
   value?: string;
+  src?: string;
+  alt?: string;
   min?: string;
   max?: string;
   placeholder?: string;
   inputMode?: string;
   title?: string;
   label?: string;
+  href?: string;
+  role?: string;
+  ariaLabel?: string;
   disabled?: boolean;
   selected?: boolean;
   dataset?: Record<string, string>;
@@ -881,8 +1006,18 @@ function el(tag: string, attrs: ElAttrs = {}, children?: ElChildren): HTMLElemen
   const isSelect = tag === "select";
 
   if (attrs.className) node.className = attrs.className;
+  if (attrs.id) node.id = attrs.id;
   if (attrs.text && childList.length === 0) node.textContent = attrs.text;
   if (attrs.type) node.setAttribute("type", attrs.type);
+  if (attrs.role) node.setAttribute("role", attrs.role);
+  if (attrs.ariaLabel) node.setAttribute("aria-label", attrs.ariaLabel);
+  if (attrs.href && node instanceof HTMLAnchorElement) {
+    node.href = attrs.href;
+    node.target = "_blank";
+    node.rel = "noopener noreferrer";
+  }
+  if (attrs.src && node instanceof HTMLImageElement) node.src = attrs.src;
+  if (attrs.alt !== undefined && node instanceof HTMLImageElement) node.alt = attrs.alt;
   if (attrs.value !== undefined) {
     if (node instanceof HTMLInputElement || node instanceof HTMLOptionElement) {
       node.value = attrs.value;

@@ -1,4 +1,5 @@
 import type { ExerciseGroup } from "../types";
+import type { ExerciseGuide } from "./guides/types";
 
 export interface Messages {
   appTitle: string;
@@ -8,6 +9,13 @@ export interface Messages {
   };
   groups: Record<ExerciseGroup, string>;
   exercises: Record<string, string>;
+  guides: Record<string, ExerciseGuide>;
+  guide: {
+    viewGuide: string;
+    howTo: string;
+    close: string;
+    viewGifDemos: string;
+  };
   editor: {
     title: string;
     subtitle: string;

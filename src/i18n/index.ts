@@ -1,6 +1,7 @@
 import type { ExerciseGroup } from "../types";
 import { en } from "./en";
 import { fr } from "./fr";
+import type { ExerciseGuide } from "./guides/types";
 import type { Messages } from "./types";
 
 export type Locale = "en" | "fr";
@@ -69,6 +70,10 @@ function interpolate(template: string, params: Record<string, string | number>):
 
 export function tExercise(exerciseId: string): string {
   return messages.exercises[exerciseId] ?? exerciseId;
+}
+
+export function tExerciseGuide(exerciseId: string): ExerciseGuide | null {
+  return messages.guides[exerciseId] ?? null;
 }
 
 export function tGroup(group: ExerciseGroup): string {

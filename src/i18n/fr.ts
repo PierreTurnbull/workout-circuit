@@ -1,5 +1,6 @@
 import type { Messages } from "./types";
 import { exerciseNamesFr } from "./exercises/fr";
+import { exerciseGuidesFr } from "./guides/fr";
 
 export const fr: Messages = {
   appTitle: "Circuit d'entraînement",
@@ -15,6 +16,13 @@ export const fr: Messages = {
     finisher: "Finishers full-body",
   },
   exercises: exerciseNamesFr,
+  guides: exerciseGuidesFr,
+  guide: {
+    viewGuide: "Comment faire cet exercice",
+    howTo: "Comment faire",
+    close: "Fermer",
+    viewGifDemos: "Voir des GIFs sur Google Images",
+  },
   editor: {
     title: "Construire votre circuit",
     subtitle: "Générez un entraînement équilibré en un clic, ou créez le vôtre.",
