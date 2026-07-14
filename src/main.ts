@@ -1,4 +1,6 @@
 import { registerSW } from "virtual:pwa-register";
+import { Capacitor } from "@capacitor/core";
+import { StatusBar, Style } from "@capacitor/status-bar";
 import type {
   AppPhase,
   Circuit,
@@ -1546,6 +1548,19 @@ function stopElapsedTicker(): void {
 }
 
 applyDocumentLocale();
+
+async function initNativeShell(): Promise<void> {
+  if (!Capacitor.isNativePlatform()) return;
+
+  try {
+    await StatusBar.setStyle({ style: Style.Dark });
+    await StatusBar.setBackgroundColor({ color: "#0f172a" });
+  } catch {
+    // Status bar styling is best-effort on Android WebView shells.
+  }
+}
+
+void initNativeShell();
 
 if (import.meta.env.DEV) {
   (window as Window & { seedWorkoutHistory?: () => Promise<number> }).seedWorkoutHistory =

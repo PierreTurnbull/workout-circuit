@@ -6,11 +6,24 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:android": "tsc && vite build && npx cap sync android",
+    "android:open": "npx cap open android",
+    "android:run": "npm run build:android && npx cap run android",
+    "android:bundle": "npm run build:android && cd android && ./gradlew bundleRelease",
+    "android:icons": "npx capacitor-assets generate --android",
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
     "typescript": "^5.8.3",
     "vite": "^6.3.5",
     "vite-plugin-pwa": "^0.21.2"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.4.1",
+    "@capacitor/cli": "^8.4.1",
+    "@capacitor/core": "^8.4.1",
+    "@capacitor/splash-screen": "^8.0.1",
+    "@capacitor/status-bar": "^8.0.2"
   }
 }
