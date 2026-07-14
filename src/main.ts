@@ -7,7 +7,12 @@ import type {
   TimerState,
   WorkoutSession,
 } from "./types";
-import { DEFAULT_EXERCISE_ID, getExerciseName, getGroupedExercises } from "./exercises";
+import {
+  DEFAULT_EXERCISE_ID,
+  getExerciseGroup,
+  getExerciseName,
+  getGroupedExercises,
+} from "./exercises";
 import { getExerciseGifSearchUrl } from "./exercise-search";
 import {
   applyDocumentLocale,
@@ -15,6 +20,7 @@ import {
   messages,
   setLocalePreference,
   tExerciseGuide,
+  tGroup,
   tGeneratorDuration,
   tRecapRounds,
   tRestNextRound,
@@ -123,6 +129,7 @@ function renderGuideOverlay(): void {
   if (!guide) return;
 
   const exerciseName = getExerciseName(openGuideExerciseId);
+  const exerciseGroup = getExerciseGroup(openGuideExerciseId);
   const gifSearchUrl = getExerciseGifSearchUrl(exerciseName);
 
   const overlay = el(
@@ -142,10 +149,18 @@ function renderGuideOverlay(): void {
       }),
       el("div", { className: "guide-sheet" }, [
         el("header", { className: "guide-header" }, [
-          el("h2", {
-            className: "guide-title",
-            text: getExerciseName(openGuideExerciseId),
-          }),
+          el("div", { className: "guide-heading" }, [
+            el("h2", {
+              className: "guide-title",
+              text: exerciseName,
+            }),
+            exerciseGroup
+              ? el("span", {
+                  className: "guide-category",
+                  text: tGroup(exerciseGroup),
+                })
+              : null,
+          ]),
           el(
             "button",
             {

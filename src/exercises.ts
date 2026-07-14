@@ -80,6 +80,10 @@ export function getExerciseName(exerciseId: string): string {
   return tExercise(exerciseId);
 }
 
+export function getExerciseGroup(exerciseId: string): ExerciseGroup | null {
+  return EXERCISES.find((exercise) => exercise.id === exerciseId)?.group ?? null;
+}
+
 export function getGroupedExercises(): { label: string; exercises: Exercise[] }[] {
   const locale = getLocale();
 
