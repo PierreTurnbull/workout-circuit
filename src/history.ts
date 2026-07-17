@@ -1,4 +1,5 @@
 import type { Circuit, CompletedWorkout, ExerciseSet, QuantityType, SavedCircuit, WorkoutSession } from "./types";
+import { getExerciseQuantityType } from "./exercises";
 import { createId, formatDuration } from "./utils";
 
 const HISTORY_STORAGE_KEY = "workout-circuit-history";
@@ -42,14 +43,15 @@ export function getHistoryEntry(id: string): CompletedWorkout | null {
 }
 
 function exerciseSetFromSaved(set: SavedCircuit["sets"][number]): ExerciseSet {
+  const quantityType = getExerciseQuantityType(set.exerciseId);
   return {
     id: createId(),
     exerciseId: set.exerciseId,
-    quantityType: set.quantityType,
+    quantityType,
     reps: set.reps,
     durationSeconds: set.durationSeconds,
     quantityInput:
-      set.quantityType === "reps" ? String(set.reps) : formatDuration(set.durationSeconds),
+      quantityType === "reps" ? String(set.reps) : formatDuration(set.durationSeconds),
   };
 }
 

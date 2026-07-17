@@ -1,3 +1,4 @@
+import { getExerciseQuantityType } from "./exercises";
 import type { ExerciseSet, QuantityType } from "./types";
 
 export type CircuitDuration = 15 | 20 | 30;
@@ -28,7 +29,6 @@ interface ExerciseSpec {
   maxIntensity: IntensityLevel;
   static: boolean;
   unilateral: boolean;
-  quantityType: QuantityType;
   quantities: Record<CircuitIntensity, number>;
   /** Lower = accessory / less likely. Default 1. */
   pickWeight?: number;
@@ -48,86 +48,86 @@ const MAX_STATIC_PER_CIRCUIT = 2;
 
 const EXERCISE_SPECS: ExerciseSpec[] = [
   // Cardio / locomotion
-  { id: "butt-kicks", kinds: ["cardio"], impact: "medium", minIntensity: 1, maxIntensity: 2, static: false, unilateral: false, cardioTier: 2, quantityType: "duration", quantities: { light: 30, moderate: 35, intense: 40 } },
-  { id: "cross-jacks", kinds: ["cardio"], impact: "medium", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, cardioTier: 3, quantityType: "duration", quantities: { light: 30, moderate: 35, intense: 40 } },
-  { id: "fast-feet", kinds: ["cardio"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, cardioTier: 3, quantityType: "duration", quantities: { light: 25, moderate: 30, intense: 35 } },
-  { id: "high-knees", kinds: ["cardio"], impact: "medium", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, cardioTier: 3, pickWeight: 1.1, quantityType: "duration", quantities: { light: 30, moderate: 35, intense: 40 } },
-  { id: "jumping-jacks", kinds: ["cardio"], impact: "medium", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, cardioTier: 3, pickWeight: 1.15, quantityType: "duration", quantities: { light: 30, moderate: 40, intense: 45 } },
-  { id: "lateral-hops", kinds: ["cardio"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, cardioTier: 3, quantityType: "duration", quantities: { light: 25, moderate: 30, intense: 35 } },
-  { id: "marching-in-place", kinds: ["cardio"], impact: "low", minIntensity: 1, maxIntensity: 1, static: false, unilateral: false, cardioTier: 1, quantityType: "duration", quantities: { light: 40, moderate: 45, intense: 50 } },
-  { id: "mountain-climbers", kinds: ["cardio", "finisher"], impact: "high", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, cardioTier: 3, pickWeight: 1.2, quantityType: "duration", quantities: { light: 25, moderate: 35, intense: 40 } },
-  { id: "punch-jacks", kinds: ["cardio"], impact: "medium", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, cardioTier: 3, quantityType: "duration", quantities: { light: 30, moderate: 35, intense: 40 } },
-  { id: "side-shuffles", kinds: ["cardio"], impact: "low", minIntensity: 1, maxIntensity: 2, static: false, unilateral: false, cardioTier: 1, quantityType: "duration", quantities: { light: 30, moderate: 35, intense: 40 } },
-  { id: "skaters", kinds: ["cardio"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, cardioTier: 3, quantityType: "duration", quantities: { light: 25, moderate: 35, intense: 40 } },
-  { id: "toe-taps", kinds: ["cardio"], impact: "low", minIntensity: 1, maxIntensity: 1, static: false, unilateral: false, cardioTier: 1, quantityType: "duration", quantities: { light: 30, moderate: 35, intense: 40 } },
-  { id: "bear-crawl", kinds: ["cardio"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, cardioTier: 2, quantityType: "duration", quantities: { light: 20, moderate: 25, intense: 30 } },
-  { id: "crab-walk", kinds: ["cardio"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, cardioTier: 2, quantityType: "duration", quantities: { light: 20, moderate: 25, intense: 30 } },
-  { id: "inchworms", kinds: ["cardio"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, cardioTier: 2, quantityType: "reps", quantities: { light: 6, moderate: 8, intense: 10 } },
-  { id: "squat-to-overhead-reach", kinds: ["cardio"], impact: "low", minIntensity: 1, maxIntensity: 1, static: false, unilateral: false, cardioTier: 1, quantityType: "reps", quantities: { light: 12, moderate: 15, intense: 18 } },
+  { id: "butt-kicks", kinds: ["cardio"], impact: "medium", minIntensity: 1, maxIntensity: 2, static: false, unilateral: false, cardioTier: 2, quantities: { light: 30, moderate: 35, intense: 40 } },
+  { id: "cross-jacks", kinds: ["cardio"], impact: "medium", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, cardioTier: 3, quantities: { light: 30, moderate: 35, intense: 40 } },
+  { id: "fast-feet", kinds: ["cardio"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, cardioTier: 3, quantities: { light: 25, moderate: 30, intense: 35 } },
+  { id: "high-knees", kinds: ["cardio"], impact: "medium", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, cardioTier: 3, pickWeight: 1.1, quantities: { light: 30, moderate: 35, intense: 40 } },
+  { id: "jumping-jacks", kinds: ["cardio"], impact: "medium", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, cardioTier: 3, pickWeight: 1.15, quantities: { light: 30, moderate: 40, intense: 45 } },
+  { id: "lateral-hops", kinds: ["cardio"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, cardioTier: 3, quantities: { light: 25, moderate: 30, intense: 35 } },
+  { id: "marching-in-place", kinds: ["cardio"], impact: "low", minIntensity: 1, maxIntensity: 1, static: false, unilateral: false, cardioTier: 1, quantities: { light: 40, moderate: 45, intense: 50 } },
+  { id: "mountain-climbers", kinds: ["cardio", "finisher"], impact: "high", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, cardioTier: 3, pickWeight: 1.2, quantities: { light: 25, moderate: 35, intense: 40 } },
+  { id: "punch-jacks", kinds: ["cardio"], impact: "medium", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, cardioTier: 3, quantities: { light: 30, moderate: 35, intense: 40 } },
+  { id: "side-shuffles", kinds: ["cardio"], impact: "low", minIntensity: 1, maxIntensity: 2, static: false, unilateral: false, cardioTier: 1, quantities: { light: 30, moderate: 35, intense: 40 } },
+  { id: "skaters", kinds: ["cardio"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, cardioTier: 3, quantities: { light: 25, moderate: 35, intense: 40 } },
+  { id: "toe-taps", kinds: ["cardio"], impact: "low", minIntensity: 1, maxIntensity: 1, static: false, unilateral: false, cardioTier: 1, quantities: { light: 30, moderate: 35, intense: 40 } },
+  { id: "bear-crawl", kinds: ["cardio"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, cardioTier: 2, quantities: { light: 20, moderate: 25, intense: 30 } },
+  { id: "crab-walk", kinds: ["cardio"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, cardioTier: 2, quantities: { light: 20, moderate: 25, intense: 30 } },
+  { id: "inchworms", kinds: ["cardio"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, cardioTier: 2, quantities: { light: 6, moderate: 8, intense: 10 } },
+  { id: "squat-to-overhead-reach", kinds: ["cardio"], impact: "low", minIntensity: 1, maxIntensity: 1, static: false, unilateral: false, cardioTier: 1, quantities: { light: 12, moderate: 15, intense: 18 } },
 
   // Squat / lunge patterns
-  { id: "calf-raises", kinds: ["lower"], impact: "low", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, pickWeight: 0.2, quantityType: "reps", quantities: { light: 15, moderate: 20, intense: 25 } },
-  { id: "curtsy-lunges", kinds: ["lower"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: true, quantityType: "reps", quantities: { light: 10, moderate: 12, intense: 14 } },
-  { id: "front-lunges", kinds: ["lower"], impact: "medium", minIntensity: 1, maxIntensity: 3, static: false, unilateral: true, pickWeight: 1.1, quantityType: "reps", quantities: { light: 10, moderate: 12, intense: 16 } },
-  { id: "lateral-lunges", kinds: ["lower"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: true, quantityType: "reps", quantities: { light: 10, moderate: 12, intense: 14 } },
-  { id: "reverse-lunges", kinds: ["lower"], impact: "medium", minIntensity: 1, maxIntensity: 3, static: false, unilateral: true, pickWeight: 1.15, quantityType: "reps", quantities: { light: 10, moderate: 12, intense: 14 } },
-  { id: "squats", kinds: ["lower"], impact: "low", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.2, quantityType: "reps", quantities: { light: 12, moderate: 15, intense: 20 } },
-  { id: "step-ups", kinds: ["lower"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: true, pickWeight: 1.05, quantityType: "reps", quantities: { light: 10, moderate: 12, intense: 14 } },
-  { id: "sumo-squats", kinds: ["lower"], impact: "low", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.1, quantityType: "reps", quantities: { light: 12, moderate: 15, intense: 18 } },
-  { id: "wall-sit", kinds: ["lower"], impact: "low", minIntensity: 1, maxIntensity: 3, static: true, unilateral: false, pickWeight: 0.45, quantityType: "duration", quantities: { light: 30, moderate: 40, intense: 50 } },
-  { id: "fire-hydrants", kinds: ["lower"], impact: "low", minIntensity: 1, maxIntensity: 3, static: false, unilateral: true, pickWeight: 0.3, quantityType: "reps", quantities: { light: 12, moderate: 15, intense: 18 } },
+  { id: "calf-raises", kinds: ["lower"], impact: "low", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, pickWeight: 0.2, quantities: { light: 15, moderate: 20, intense: 25 } },
+  { id: "curtsy-lunges", kinds: ["lower"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: true, quantities: { light: 10, moderate: 12, intense: 14 } },
+  { id: "front-lunges", kinds: ["lower"], impact: "medium", minIntensity: 1, maxIntensity: 3, static: false, unilateral: true, pickWeight: 1.1, quantities: { light: 10, moderate: 12, intense: 16 } },
+  { id: "lateral-lunges", kinds: ["lower"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: true, quantities: { light: 10, moderate: 12, intense: 14 } },
+  { id: "reverse-lunges", kinds: ["lower"], impact: "medium", minIntensity: 1, maxIntensity: 3, static: false, unilateral: true, pickWeight: 1.15, quantities: { light: 10, moderate: 12, intense: 14 } },
+  { id: "squats", kinds: ["lower"], impact: "low", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.2, quantities: { light: 12, moderate: 15, intense: 20 } },
+  { id: "step-ups", kinds: ["lower"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: true, pickWeight: 1.05, quantities: { light: 10, moderate: 12, intense: 14 } },
+  { id: "sumo-squats", kinds: ["lower"], impact: "low", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.1, quantities: { light: 12, moderate: 15, intense: 18 } },
+  { id: "wall-sit", kinds: ["lower"], impact: "low", minIntensity: 1, maxIntensity: 3, static: true, unilateral: false, pickWeight: 0.45, quantities: { light: 30, moderate: 40, intense: 50 } },
+  { id: "fire-hydrants", kinds: ["lower"], impact: "low", minIntensity: 1, maxIntensity: 3, static: false, unilateral: true, pickWeight: 0.3, quantities: { light: 12, moderate: 15, intense: 18 } },
 
   // Hinge / posterior chain
-  { id: "glute-bridges", kinds: ["hinge"], impact: "low", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.25, quantityType: "reps", quantities: { light: 12, moderate: 15, intense: 18 } },
-  { id: "single-leg-glute-bridge", kinds: ["hinge"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: true, pickWeight: 1.05, quantityType: "reps", quantities: { light: 8, moderate: 10, intense: 12 } },
-  { id: "superman-hold", kinds: ["hinge"], impact: "low", minIntensity: 1, maxIntensity: 3, static: true, unilateral: false, pickWeight: 0.9, quantityType: "duration", quantities: { light: 25, moderate: 30, intense: 35 } },
+  { id: "glute-bridges", kinds: ["hinge"], impact: "low", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.25, quantities: { light: 12, moderate: 15, intense: 18 } },
+  { id: "single-leg-glute-bridge", kinds: ["hinge"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: true, pickWeight: 1.05, quantities: { light: 8, moderate: 10, intense: 12 } },
+  { id: "superman-hold", kinds: ["hinge"], impact: "low", minIntensity: 1, maxIntensity: 3, static: true, unilateral: false, pickWeight: 0.9, quantities: { light: 25, moderate: 30, intense: 35 } },
 
   // Push
-  { id: "decline-pushups", kinds: ["upper-push"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 0.95, quantityType: "reps", quantities: { light: 6, moderate: 8, intense: 10 } },
-  { id: "diamond-pushups", kinds: ["upper-push"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 0.9, quantityType: "reps", quantities: { light: 6, moderate: 8, intense: 10 } },
-  { id: "dive-bomber-pushups", kinds: ["upper-push"], impact: "medium", minIntensity: 3, maxIntensity: 3, static: false, unilateral: false, quantityType: "reps", quantities: { light: 5, moderate: 6, intense: 8 } },
-  { id: "knee-pushups", kinds: ["upper-push"], impact: "low", minIntensity: 1, maxIntensity: 1, static: false, unilateral: false, quantityType: "reps", quantities: { light: 10, moderate: 12, intense: 15 } },
-  { id: "pike-pushups", kinds: ["upper-push"], impact: "medium", minIntensity: 3, maxIntensity: 3, static: false, unilateral: false, quantityType: "reps", quantities: { light: 6, moderate: 8, intense: 10 } },
-  { id: "pushups", kinds: ["upper-push"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.2, quantityType: "reps", quantities: { light: 8, moderate: 10, intense: 14 } },
-  { id: "tricep-dips", kinds: ["upper-push"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 0.95, quantityType: "reps", quantities: { light: 8, moderate: 10, intense: 12 } },
-  { id: "walk-out-pushups", kinds: ["upper-push"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 0.9, quantityType: "reps", quantities: { light: 6, moderate: 8, intense: 10 } },
-  { id: "wall-pushups", kinds: ["upper-push"], impact: "low", minIntensity: 1, maxIntensity: 2, static: false, unilateral: false, durationCaps: { 15: 2, 20: 1 }, quantityType: "reps", quantities: { light: 12, moderate: 15, intense: 18 } },
-  { id: "wide-pushups", kinds: ["upper-push"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.05, quantityType: "reps", quantities: { light: 8, moderate: 10, intense: 12 } },
+  { id: "decline-pushups", kinds: ["upper-push"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 0.95, quantities: { light: 6, moderate: 8, intense: 10 } },
+  { id: "diamond-pushups", kinds: ["upper-push"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 0.9, quantities: { light: 6, moderate: 8, intense: 10 } },
+  { id: "dive-bomber-pushups", kinds: ["upper-push"], impact: "medium", minIntensity: 3, maxIntensity: 3, static: false, unilateral: false, quantities: { light: 5, moderate: 6, intense: 8 } },
+  { id: "knee-pushups", kinds: ["upper-push"], impact: "low", minIntensity: 1, maxIntensity: 1, static: false, unilateral: false, quantities: { light: 10, moderate: 12, intense: 15 } },
+  { id: "pike-pushups", kinds: ["upper-push"], impact: "medium", minIntensity: 3, maxIntensity: 3, static: false, unilateral: false, quantities: { light: 6, moderate: 8, intense: 10 } },
+  { id: "pushups", kinds: ["upper-push"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.2, quantities: { light: 8, moderate: 10, intense: 14 } },
+  { id: "tricep-dips", kinds: ["upper-push"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 0.95, quantities: { light: 8, moderate: 10, intense: 12 } },
+  { id: "walk-out-pushups", kinds: ["upper-push"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 0.9, quantities: { light: 6, moderate: 8, intense: 10 } },
+  { id: "wall-pushups", kinds: ["upper-push"], impact: "low", minIntensity: 1, maxIntensity: 2, static: false, unilateral: false, durationCaps: { 15: 2, 20: 1 }, quantities: { light: 12, moderate: 15, intense: 18 } },
+  { id: "wide-pushups", kinds: ["upper-push"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.05, quantities: { light: 8, moderate: 10, intense: 12 } },
 
   // Pull / scapular
-  { id: "reverse-snow-angels", kinds: ["pull"], impact: "low", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1, quantityType: "reps", quantities: { light: 12, moderate: 15, intense: 18 } },
-  { id: "swimmers", kinds: ["pull"], impact: "low", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.1, quantityType: "reps", quantities: { light: 12, moderate: 15, intense: 20 } },
-  { id: "ytw-raises", kinds: ["pull"], impact: "low", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, pickWeight: 0.95, quantityType: "reps", quantities: { light: 10, moderate: 12, intense: 15 } },
+  { id: "reverse-snow-angels", kinds: ["pull"], impact: "low", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1, quantities: { light: 12, moderate: 15, intense: 18 } },
+  { id: "swimmers", kinds: ["pull"], impact: "low", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.1, quantities: { light: 12, moderate: 15, intense: 20 } },
+  { id: "ytw-raises", kinds: ["pull"], impact: "low", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, pickWeight: 0.95, quantities: { light: 10, moderate: 12, intense: 15 } },
 
   // Static core / stability
-  { id: "bear-hold", kinds: ["core-static"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: true, unilateral: false, pickWeight: 0.85, quantityType: "duration", quantities: { light: 20, moderate: 25, intense: 30 } },
-  { id: "dead-bug-hold", kinds: ["core-static"], impact: "low", minIntensity: 1, maxIntensity: 3, static: true, unilateral: false, pickWeight: 1.1, quantityType: "duration", quantities: { light: 20, moderate: 30, intense: 35 } },
-  { id: "hollow-hold", kinds: ["core-static"], impact: "low", minIntensity: 2, maxIntensity: 3, static: true, unilateral: false, pickWeight: 0.9, quantityType: "duration", quantities: { light: 25, moderate: 35, intense: 45 } },
-  { id: "plank", kinds: ["core-static"], impact: "low", minIntensity: 1, maxIntensity: 3, static: true, unilateral: false, pickWeight: 1.2, quantityType: "duration", quantities: { light: 30, moderate: 45, intense: 60 } },
-  { id: "reverse-plank", kinds: ["core-static"], impact: "low", minIntensity: 2, maxIntensity: 3, static: true, unilateral: false, pickWeight: 0.85, quantityType: "duration", quantities: { light: 20, moderate: 30, intense: 35 } },
-  { id: "side-plank", kinds: ["core-static"], impact: "low", minIntensity: 2, maxIntensity: 3, static: true, unilateral: false, pickWeight: 0.7, quantityType: "duration", quantities: { light: 25, moderate: 35, intense: 45 } },
+  { id: "bear-hold", kinds: ["core-static"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: true, unilateral: false, pickWeight: 0.85, quantities: { light: 20, moderate: 25, intense: 30 } },
+  { id: "dead-bug-hold", kinds: ["core-static"], impact: "low", minIntensity: 1, maxIntensity: 3, static: true, unilateral: false, pickWeight: 1.1, quantities: { light: 20, moderate: 30, intense: 35 } },
+  { id: "hollow-hold", kinds: ["core-static"], impact: "low", minIntensity: 2, maxIntensity: 3, static: true, unilateral: false, pickWeight: 0.9, quantities: { light: 25, moderate: 35, intense: 45 } },
+  { id: "plank", kinds: ["core-static"], impact: "low", minIntensity: 1, maxIntensity: 3, static: true, unilateral: false, pickWeight: 1.2, quantities: { light: 30, moderate: 45, intense: 60 } },
+  { id: "reverse-plank", kinds: ["core-static"], impact: "low", minIntensity: 2, maxIntensity: 3, static: true, unilateral: false, pickWeight: 0.85, quantities: { light: 20, moderate: 30, intense: 35 } },
+  { id: "side-plank", kinds: ["core-static"], impact: "low", minIntensity: 2, maxIntensity: 3, static: true, unilateral: false, pickWeight: 0.7, quantities: { light: 25, moderate: 35, intense: 45 } },
 
   // Dynamic core
-  { id: "bicycle-crunches", kinds: ["core-dynamic"], impact: "low", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.05, quantityType: "reps", quantities: { light: 16, moderate: 20, intense: 24 } },
-  { id: "bird-dog", kinds: ["core-dynamic"], impact: "low", minIntensity: 1, maxIntensity: 3, static: false, unilateral: true, pickWeight: 1.15, quantityType: "reps", quantities: { light: 10, moderate: 12, intense: 16 } },
-  { id: "crunches", kinds: ["core-dynamic"], impact: "low", minIntensity: 1, maxIntensity: 2, static: false, unilateral: false, pickWeight: 0.85, quantityType: "reps", quantities: { light: 15, moderate: 18, intense: 22 } },
-  { id: "dead-bug", kinds: ["core-dynamic"], impact: "low", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.1, quantityType: "reps", quantities: { light: 10, moderate: 12, intense: 16 } },
-  { id: "flutter-kicks", kinds: ["core-dynamic"], impact: "low", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 0.95, quantityType: "duration", quantities: { light: 25, moderate: 30, intense: 35 } },
-  { id: "leg-raises", kinds: ["core-dynamic"], impact: "low", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 0.95, quantityType: "reps", quantities: { light: 10, moderate: 12, intense: 15 } },
-  { id: "plank-shoulder-taps", kinds: ["core-dynamic"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 0.9, quantityType: "reps", quantities: { light: 16, moderate: 20, intense: 24 } },
-  { id: "russian-twists", kinds: ["core-dynamic"], impact: "low", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1, quantityType: "reps", quantities: { light: 16, moderate: 20, intense: 24 } },
-  { id: "sit-ups", kinds: ["core-dynamic"], impact: "low", minIntensity: 1, maxIntensity: 2, static: false, unilateral: false, pickWeight: 0.8, quantityType: "reps", quantities: { light: 12, moderate: 15, intense: 20 } },
+  { id: "bicycle-crunches", kinds: ["core-dynamic"], impact: "low", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.05, quantities: { light: 16, moderate: 20, intense: 24 } },
+  { id: "bird-dog", kinds: ["core-dynamic"], impact: "low", minIntensity: 1, maxIntensity: 3, static: false, unilateral: true, pickWeight: 1.15, quantities: { light: 10, moderate: 12, intense: 16 } },
+  { id: "crunches", kinds: ["core-dynamic"], impact: "low", minIntensity: 1, maxIntensity: 2, static: false, unilateral: false, pickWeight: 0.85, quantities: { light: 15, moderate: 18, intense: 22 } },
+  { id: "dead-bug", kinds: ["core-dynamic"], impact: "low", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.1, quantities: { light: 10, moderate: 12, intense: 16 } },
+  { id: "flutter-kicks", kinds: ["core-dynamic"], impact: "low", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 0.95, quantities: { light: 25, moderate: 30, intense: 35 } },
+  { id: "leg-raises", kinds: ["core-dynamic"], impact: "low", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 0.95, quantities: { light: 10, moderate: 12, intense: 15 } },
+  { id: "plank-shoulder-taps", kinds: ["core-dynamic"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 0.9, quantities: { light: 16, moderate: 20, intense: 24 } },
+  { id: "russian-twists", kinds: ["core-dynamic"], impact: "low", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1, quantities: { light: 16, moderate: 20, intense: 24 } },
+  { id: "sit-ups", kinds: ["core-dynamic"], impact: "low", minIntensity: 1, maxIntensity: 2, static: false, unilateral: false, pickWeight: 0.8, quantities: { light: 12, moderate: 15, intense: 20 } },
 
   // High-effort finishers
-  { id: "box-step-burpees", kinds: ["finisher"], impact: "high", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.05, quantityType: "reps", quantities: { light: 6, moderate: 8, intense: 10 } },
-  { id: "broad-jumps", kinds: ["finisher"], impact: "high", minIntensity: 3, maxIntensity: 3, static: false, unilateral: false, quantityType: "reps", quantities: { light: 6, moderate: 8, intense: 10 } },
-  { id: "burpees", kinds: ["finisher"], impact: "high", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.15, quantityType: "reps", quantities: { light: 6, moderate: 8, intense: 10 } },
-  { id: "jump-squats", kinds: ["finisher"], impact: "high", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.1, quantityType: "reps", quantities: { light: 10, moderate: 12, intense: 15 } },
-  { id: "plank-jacks", kinds: ["finisher"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.05, quantityType: "duration", quantities: { light: 25, moderate: 30, intense: 35 } },
-  { id: "sprawls", kinds: ["finisher"], impact: "high", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.1, quantityType: "reps", quantities: { light: 8, moderate: 10, intense: 12 } },
-  { id: "squat-thrusts", kinds: ["finisher"], impact: "high", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.15, quantityType: "reps", quantities: { light: 8, moderate: 10, intense: 12 } },
-  { id: "star-jumps", kinds: ["finisher"], impact: "high", minIntensity: 3, maxIntensity: 3, static: false, unilateral: false, quantityType: "reps", quantities: { light: 8, moderate: 10, intense: 12 } },
-  { id: "tuck-jumps", kinds: ["finisher"], impact: "high", minIntensity: 3, maxIntensity: 3, static: false, unilateral: false, quantityType: "reps", quantities: { light: 6, moderate: 8, intense: 10 } },
+  { id: "box-step-burpees", kinds: ["finisher"], impact: "high", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.05, quantities: { light: 6, moderate: 8, intense: 10 } },
+  { id: "broad-jumps", kinds: ["finisher"], impact: "high", minIntensity: 3, maxIntensity: 3, static: false, unilateral: false, quantities: { light: 6, moderate: 8, intense: 10 } },
+  { id: "burpees", kinds: ["finisher"], impact: "high", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.15, quantities: { light: 6, moderate: 8, intense: 10 } },
+  { id: "jump-squats", kinds: ["finisher"], impact: "high", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.1, quantities: { light: 10, moderate: 12, intense: 15 } },
+  { id: "plank-jacks", kinds: ["finisher"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.05, quantities: { light: 25, moderate: 30, intense: 35 } },
+  { id: "sprawls", kinds: ["finisher"], impact: "high", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.1, quantities: { light: 8, moderate: 10, intense: 12 } },
+  { id: "squat-thrusts", kinds: ["finisher"], impact: "high", minIntensity: 2, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.15, quantities: { light: 8, moderate: 10, intense: 12 } },
+  { id: "star-jumps", kinds: ["finisher"], impact: "high", minIntensity: 3, maxIntensity: 3, static: false, unilateral: false, quantities: { light: 8, moderate: 10, intense: 12 } },
+  { id: "tuck-jumps", kinds: ["finisher"], impact: "high", minIntensity: 3, maxIntensity: 3, static: false, unilateral: false, quantities: { light: 6, moderate: 8, intense: 10 } },
 ];
 
 const SPEC_BY_ID = new Map(EXERCISE_SPECS.map((spec) => [spec.id, spec]));
@@ -331,17 +331,18 @@ function applyPickConstraints(pool: ExerciseSpec[], context: PickContext): Exerc
 }
 
 function buildExerciseSet(spec: ExerciseSpec, intensity: CircuitIntensity): ExerciseSet {
+  const quantityType = getExerciseQuantityType(spec.id);
   const baseQuantity = spec.quantities[intensity];
   const quantity =
-    spec.quantityType === "reps" ? jitterReps(baseQuantity) : jitterDuration(baseQuantity);
+    quantityType === "reps" ? jitterReps(baseQuantity) : jitterDuration(baseQuantity);
 
   return {
     id: crypto.randomUUID(),
     exerciseId: spec.id,
-    quantityType: spec.quantityType,
-    reps: spec.quantityType === "reps" ? quantity : 10,
-    durationSeconds: spec.quantityType === "duration" ? quantity : 60,
-    quantityInput: formatQuantityInput(spec.quantityType, quantity),
+    quantityType,
+    reps: quantityType === "reps" ? quantity : 10,
+    durationSeconds: quantityType === "duration" ? quantity : 60,
+    quantityInput: formatQuantityInput(quantityType, quantity),
   };
 }
 

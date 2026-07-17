@@ -5,6 +5,7 @@ export type ExerciseGroup = "cardio" | "lower" | "upper" | "core" | "finisher";
 export interface Exercise {
   id: string;
   group: ExerciseGroup;
+  quantityType: QuantityType;
 }
 
 export interface ExerciseSet {

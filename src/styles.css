@@ -157,11 +157,12 @@ body {
   min-width: 0;
 }
 
-.set-row-bottom .quantity-type-toggle {
-  display: flex;
+.set-row-bottom .quantity-type-label {
   flex: 0 0 auto;
-  margin-bottom: 0;
-  gap: 0.2rem;
+  min-width: 4.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
 }
 
 .set-row-bottom .set-quantity-input {
@@ -180,11 +181,6 @@ body {
 .set-row select.input {
   padding-right: 1.75rem;
   background-position: right 0.45rem center;
-}
-
-.set-row .toggle-btn {
-  padding: 0.38rem 0.5rem;
-  font-size: 0.78rem;
 }
 
 .set-row .set-index {
@@ -537,31 +533,6 @@ select.input {
 select.input:focus {
   outline: 2px solid var(--primary);
   outline-offset: 1px;
-}
-
-.quantity-type-toggle {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-  margin-bottom: 0.75rem;
-}
-
-.toggle-btn {
-  padding: 0.55rem 0.75rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  background: var(--bg);
-  color: var(--text-muted);
-  font: inherit;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
-}
-
-.toggle-btn.active {
-  background: rgba(56, 189, 248, 0.15);
-  border-color: var(--primary);
-  color: var(--primary);
 }
 
 .rounds-card {

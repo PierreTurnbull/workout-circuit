@@ -1,1 +1,1 @@
-UI improvements: help icons, tooltip fixes, and circuit overview polish.
+Exercise quantities are now fixed per exercise (reps vs duration). Superman hold moved to lower/posterior chain.

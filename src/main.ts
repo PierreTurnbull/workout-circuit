@@ -15,6 +15,7 @@ import {
   DEFAULT_EXERCISE_ID,
   getExerciseGroup,
   getExerciseName,
+  getExerciseQuantityType,
   getGroupedExercises,
 } from "./exercises";
 import { getExerciseGifSearchUrl } from "./exercise-search";
@@ -104,14 +105,24 @@ let historyEntries: CompletedWorkout[] = loadHistory();
 let selectedHistoryId: string | null = null;
 
 function createDefaultSet(): ExerciseSet {
+  const quantityType = getExerciseQuantityType(DEFAULT_EXERCISE_ID);
   return {
     id: createId(),
     exerciseId: DEFAULT_EXERCISE_ID,
-    quantityType: "reps",
+    quantityType,
     reps: 10,
     durationSeconds: 60,
-    quantityInput: "10",
+    quantityInput: quantityType === "reps" ? "10" : formatDuration(60),
   };
+}
+
+function applyExerciseQuantityType(set: ExerciseSet): void {
+  const quantityType = getExerciseQuantityType(set.exerciseId);
+  if (set.quantityType === quantityType) return;
+
+  set.quantityType = quantityType;
+  set.quantityInput =
+    quantityType === "reps" ? String(set.reps) : formatDuration(set.durationSeconds);
 }
 
 function resetTimer(): void {
@@ -653,10 +664,11 @@ function renderSetEditor(set: ExerciseSet, index: number): HTMLElement {
       ),
     ]),
     el("div", { className: "set-row-bottom" }, [
-      el("div", { className: "quantity-type-toggle" }, [
-        quantityTypeButton(set, "reps", messages.set.reps),
-        quantityTypeButton(set, "duration", messages.set.duration),
-      ]),
+      el("span", {
+        className: "quantity-type-label",
+        text:
+          set.quantityType === "reps" ? messages.set.reps : messages.set.duration,
+      }),
       el("input", {
         className: "input set-quantity-input",
         type: "text",
@@ -669,27 +681,6 @@ function renderSetEditor(set: ExerciseSet, index: number): HTMLElement {
       }),
     ]),
   ]);
-}
-
-function quantityTypeButton(
-  set: ExerciseSet,
-  type: QuantityType,
-  label: string,
-): HTMLElement {
-  return el(
-    "button",
-    {
-      type: "button",
-      className: `toggle-btn ${set.quantityType === type ? "active" : ""}`,
-      onClick: () => {
-        set.quantityType = type;
-        set.quantityInput =
-          type === "reps" ? String(set.reps) : formatDuration(set.durationSeconds);
-        render();
-      },
-    },
-    label,
-  );
 }
 
 function quantityLabel(type: QuantityType): string {
@@ -736,7 +727,11 @@ function syncEditorFromDom(): void {
 
     const select = row.querySelector("select");
     if (select instanceof HTMLSelectElement) {
-      set.exerciseId = select.value || DEFAULT_EXERCISE_ID;
+      const nextExerciseId = select.value || DEFAULT_EXERCISE_ID;
+      if (nextExerciseId !== set.exerciseId) {
+        set.exerciseId = nextExerciseId;
+        applyExerciseQuantityType(set);
+      }
     }
 
     const quantityInput = row.querySelector("[data-quantity-input]");

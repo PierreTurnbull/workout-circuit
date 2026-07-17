@@ -1,1 +1,1 @@
-Améliorations de l'interface : icônes d'aide, corrections des infobulles et aperçu du circuit.
+Les quantités sont désormais fixes par exercice (reps ou durée). Position Superman déplacée vers la chaîne postérieure.

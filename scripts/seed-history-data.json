@@ -1,0 +1,2494 @@
+[
+  {
+    "id": "e7ac4a8c-62c8-4534-bbc2-07c5047cd993",
+    "startedAt": 1784020250349,
+    "completedAt": 1784022122349,
+    "finishedEarly": false,
+    "roundsCompleted": 4,
+    "plannedRounds": 4,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "mountain-climbers",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 50
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 24,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 24,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "wide-pushups",
+          "quantityType": "reps",
+          "reps": 18,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "swimmers",
+          "quantityType": "reps",
+          "reps": 24,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "bicycle-crunches",
+          "quantityType": "reps",
+          "reps": 28,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "burpees",
+          "quantityType": "reps",
+          "reps": 14,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 4,
+      "restBetweenRoundsSeconds": 60
+    }
+  },
+  {
+    "id": "7c1c2d29-ca56-4680-bb5a-c7f3894b4e66",
+    "startedAt": 1783851055737,
+    "completedAt": 1783852922349,
+    "finishedEarly": false,
+    "roundsCompleted": 4,
+    "plannedRounds": 4,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "mountain-climbers",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 49
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 23,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 23,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "wide-pushups",
+          "quantityType": "reps",
+          "reps": 17,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "swimmers",
+          "quantityType": "reps",
+          "reps": 23,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "bicycle-crunches",
+          "quantityType": "reps",
+          "reps": 27,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "burpees",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 4,
+      "restBetweenRoundsSeconds": 60
+    }
+  },
+  {
+    "id": "43eedc19-51ee-479b-863a-a7884ef096aa",
+    "startedAt": 1783671061125,
+    "completedAt": 1783672922349,
+    "finishedEarly": false,
+    "roundsCompleted": 4,
+    "plannedRounds": 4,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "mountain-climbers",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 49
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 23,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 23,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "wide-pushups",
+          "quantityType": "reps",
+          "reps": 17,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "swimmers",
+          "quantityType": "reps",
+          "reps": 23,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "bicycle-crunches",
+          "quantityType": "reps",
+          "reps": 27,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "burpees",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 4,
+      "restBetweenRoundsSeconds": 60
+    }
+  },
+  {
+    "id": "3d8c5742-1e9d-4b4f-bcf7-0a4d6c583952",
+    "startedAt": 1783501866512,
+    "completedAt": 1783503722349,
+    "finishedEarly": false,
+    "roundsCompleted": 4,
+    "plannedRounds": 4,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "mountain-climbers",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 49
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 23,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 23,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "wide-pushups",
+          "quantityType": "reps",
+          "reps": 17,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "swimmers",
+          "quantityType": "reps",
+          "reps": 23,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "bicycle-crunches",
+          "quantityType": "reps",
+          "reps": 27,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "burpees",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 4,
+      "restBetweenRoundsSeconds": 60
+    }
+  },
+  {
+    "id": "c5a99ae7-57b4-4e41-a345-4d47b0767d16",
+    "startedAt": 1783332671900,
+    "completedAt": 1783334522349,
+    "finishedEarly": false,
+    "roundsCompleted": 4,
+    "plannedRounds": 4,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "mountain-climbers",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 49
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 23,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 23,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "wide-pushups",
+          "quantityType": "reps",
+          "reps": 17,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "swimmers",
+          "quantityType": "reps",
+          "reps": 23,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "bicycle-crunches",
+          "quantityType": "reps",
+          "reps": 27,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "burpees",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 4,
+      "restBetweenRoundsSeconds": 60
+    }
+  },
+  {
+    "id": "b808c5f2-d62b-4589-84eb-53c63122b475",
+    "startedAt": 1783066277288,
+    "completedAt": 1783068122349,
+    "finishedEarly": false,
+    "roundsCompleted": 4,
+    "plannedRounds": 4,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "mountain-climbers",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 48
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 23,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 23,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "wide-pushups",
+          "quantityType": "reps",
+          "reps": 17,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "swimmers",
+          "quantityType": "reps",
+          "reps": 23,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "bicycle-crunches",
+          "quantityType": "reps",
+          "reps": 27,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "burpees",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 4,
+      "restBetweenRoundsSeconds": 60
+    }
+  },
+  {
+    "id": "47a750e6-1e11-4bd4-86a6-b4fdadf1931b",
+    "startedAt": 1782897082676,
+    "completedAt": 1782898922349,
+    "finishedEarly": false,
+    "roundsCompleted": 4,
+    "plannedRounds": 4,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "mountain-climbers",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 48
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 23,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 23,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "wide-pushups",
+          "quantityType": "reps",
+          "reps": 17,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "swimmers",
+          "quantityType": "reps",
+          "reps": 23,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "bicycle-crunches",
+          "quantityType": "reps",
+          "reps": 27,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "burpees",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 4,
+      "restBetweenRoundsSeconds": 60
+    }
+  },
+  {
+    "id": "38d4ee42-dc17-4124-979e-a5fa9f5d4708",
+    "startedAt": 1782727888063,
+    "completedAt": 1782729722349,
+    "finishedEarly": false,
+    "roundsCompleted": 4,
+    "plannedRounds": 4,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "mountain-climbers",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 48
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 23,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 23,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "wide-pushups",
+          "quantityType": "reps",
+          "reps": 17,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "swimmers",
+          "quantityType": "reps",
+          "reps": 23,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "bicycle-crunches",
+          "quantityType": "reps",
+          "reps": 27,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "burpees",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 4,
+      "restBetweenRoundsSeconds": 60
+    }
+  },
+  {
+    "id": "b8d993fa-bcb2-481d-95fe-d30a362607e6",
+    "startedAt": 1782547893451,
+    "completedAt": 1782549722349,
+    "finishedEarly": false,
+    "roundsCompleted": 4,
+    "plannedRounds": 4,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "mountain-climbers",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 48
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 23,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 23,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "wide-pushups",
+          "quantityType": "reps",
+          "reps": 17,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "swimmers",
+          "quantityType": "reps",
+          "reps": 23,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "bicycle-crunches",
+          "quantityType": "reps",
+          "reps": 27,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "burpees",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 4,
+      "restBetweenRoundsSeconds": 60
+    }
+  },
+  {
+    "id": "5c0e62f4-6e27-4445-834d-d1c7ff0622ac",
+    "startedAt": 1782378698839,
+    "completedAt": 1782380522349,
+    "finishedEarly": false,
+    "roundsCompleted": 4,
+    "plannedRounds": 4,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "mountain-climbers",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 48
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 22,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 22,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "wide-pushups",
+          "quantityType": "reps",
+          "reps": 16,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "swimmers",
+          "quantityType": "reps",
+          "reps": 22,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "bicycle-crunches",
+          "quantityType": "reps",
+          "reps": 26,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "burpees",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 4,
+      "restBetweenRoundsSeconds": 60
+    }
+  },
+  {
+    "id": "98258474-899c-4fe3-be74-6c48953e0c58",
+    "startedAt": 1782209504227,
+    "completedAt": 1782211322349,
+    "finishedEarly": false,
+    "roundsCompleted": 4,
+    "plannedRounds": 4,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "mountain-climbers",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 47
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 22,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 22,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "wide-pushups",
+          "quantityType": "reps",
+          "reps": 16,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "swimmers",
+          "quantityType": "reps",
+          "reps": 22,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "bicycle-crunches",
+          "quantityType": "reps",
+          "reps": 26,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "burpees",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 4,
+      "restBetweenRoundsSeconds": 60
+    }
+  },
+  {
+    "id": "59f78301-c6eb-4095-a648-18e878923560",
+    "startedAt": 1782029509614,
+    "completedAt": 1782031322349,
+    "finishedEarly": false,
+    "roundsCompleted": 4,
+    "plannedRounds": 4,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "mountain-climbers",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 47
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 22,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 22,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "wide-pushups",
+          "quantityType": "reps",
+          "reps": 16,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "swimmers",
+          "quantityType": "reps",
+          "reps": 22,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "bicycle-crunches",
+          "quantityType": "reps",
+          "reps": 26,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "burpees",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 4,
+      "restBetweenRoundsSeconds": 60
+    }
+  },
+  {
+    "id": "1c50469f-0866-47bc-b107-50ffaccda0d7",
+    "startedAt": 1781860315002,
+    "completedAt": 1781862122349,
+    "finishedEarly": false,
+    "roundsCompleted": 4,
+    "plannedRounds": 4,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "mountain-climbers",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 47
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 22,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 22,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "wide-pushups",
+          "quantityType": "reps",
+          "reps": 16,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "swimmers",
+          "quantityType": "reps",
+          "reps": 22,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "bicycle-crunches",
+          "quantityType": "reps",
+          "reps": 26,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "burpees",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 4,
+      "restBetweenRoundsSeconds": 60
+    }
+  },
+  {
+    "id": "9b62c04b-8ccc-4055-a070-178bbce0e5ee",
+    "startedAt": 1781691120390,
+    "completedAt": 1781692922349,
+    "finishedEarly": false,
+    "roundsCompleted": 4,
+    "plannedRounds": 4,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "mountain-climbers",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 47
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 22,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 22,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "wide-pushups",
+          "quantityType": "reps",
+          "reps": 16,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "swimmers",
+          "quantityType": "reps",
+          "reps": 22,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "bicycle-crunches",
+          "quantityType": "reps",
+          "reps": 26,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "burpees",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 4,
+      "restBetweenRoundsSeconds": 60
+    }
+  },
+  {
+    "id": "8ebff831-13d8-419d-9de6-f1e9170ed43e",
+    "startedAt": 1781511125778,
+    "completedAt": 1781512922349,
+    "finishedEarly": false,
+    "roundsCompleted": 4,
+    "plannedRounds": 4,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "mountain-climbers",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 47
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 22,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 22,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "wide-pushups",
+          "quantityType": "reps",
+          "reps": 16,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "swimmers",
+          "quantityType": "reps",
+          "reps": 22,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "bicycle-crunches",
+          "quantityType": "reps",
+          "reps": 26,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "burpees",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 4,
+      "restBetweenRoundsSeconds": 60
+    }
+  },
+  {
+    "id": "7443995c-ff49-4a01-a49e-d9b4d3a17eb6",
+    "startedAt": 1781256186757,
+    "completedAt": 1781257322349,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "jumping-jacks",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 46
+        },
+        {
+          "exerciseId": "reverse-lunges",
+          "quantityType": "reps",
+          "reps": 16,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 19,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "pushups",
+          "quantityType": "reps",
+          "reps": 14,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "dead-bug-hold",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 31
+        },
+        {
+          "exerciseId": "bird-dog",
+          "quantityType": "reps",
+          "reps": 16,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 45
+    }
+  },
+  {
+    "id": "869dca89-c33d-457e-a5af-bcca570d39b3",
+    "startedAt": 1781086989451,
+    "completedAt": 1781088122349,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "jumping-jacks",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 46
+        },
+        {
+          "exerciseId": "reverse-lunges",
+          "quantityType": "reps",
+          "reps": 16,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 19,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "pushups",
+          "quantityType": "reps",
+          "reps": 14,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "dead-bug-hold",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 31
+        },
+        {
+          "exerciseId": "bird-dog",
+          "quantityType": "reps",
+          "reps": 16,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 45
+    }
+  },
+  {
+    "id": "4cd36a5f-bdb9-4768-8115-2e535c490cbf",
+    "startedAt": 1780906992145,
+    "completedAt": 1780908122349,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "jumping-jacks",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 46
+        },
+        {
+          "exerciseId": "reverse-lunges",
+          "quantityType": "reps",
+          "reps": 15,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 18,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "pushups",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "dead-bug-hold",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 31
+        },
+        {
+          "exerciseId": "bird-dog",
+          "quantityType": "reps",
+          "reps": 15,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 45
+    }
+  },
+  {
+    "id": "50237c53-35b6-418c-b82d-9f410611a843",
+    "startedAt": 1780737794839,
+    "completedAt": 1780738922349,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "jumping-jacks",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 46
+        },
+        {
+          "exerciseId": "reverse-lunges",
+          "quantityType": "reps",
+          "reps": 15,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 18,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "pushups",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "dead-bug-hold",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 31
+        },
+        {
+          "exerciseId": "bird-dog",
+          "quantityType": "reps",
+          "reps": 15,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 45
+    }
+  },
+  {
+    "id": "4bea126f-d20e-4c18-88d7-25a9d83cf379",
+    "startedAt": 1780568597533,
+    "completedAt": 1780569722349,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "jumping-jacks",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 46
+        },
+        {
+          "exerciseId": "reverse-lunges",
+          "quantityType": "reps",
+          "reps": 15,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 18,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "pushups",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "dead-bug-hold",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 31
+        },
+        {
+          "exerciseId": "bird-dog",
+          "quantityType": "reps",
+          "reps": 15,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 45
+    }
+  },
+  {
+    "id": "cb48abbe-3392-40d4-91fb-5099404862b9",
+    "startedAt": 1780388600227,
+    "completedAt": 1780389722349,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "jumping-jacks",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 45
+        },
+        {
+          "exerciseId": "reverse-lunges",
+          "quantityType": "reps",
+          "reps": 15,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 18,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "pushups",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "dead-bug-hold",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 30
+        },
+        {
+          "exerciseId": "bird-dog",
+          "quantityType": "reps",
+          "reps": 15,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 45
+    }
+  },
+  {
+    "id": "32021f88-34e1-4275-a61d-a32ad66a27c8",
+    "startedAt": 1780219402920,
+    "completedAt": 1780220522349,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "jumping-jacks",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 45
+        },
+        {
+          "exerciseId": "reverse-lunges",
+          "quantityType": "reps",
+          "reps": 15,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 18,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "pushups",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "dead-bug-hold",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 30
+        },
+        {
+          "exerciseId": "bird-dog",
+          "quantityType": "reps",
+          "reps": 15,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 45
+    }
+  },
+  {
+    "id": "d7d29138-cf45-44d5-a8c5-87920021198b",
+    "startedAt": 1780050205614,
+    "completedAt": 1780051322349,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "jumping-jacks",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 45
+        },
+        {
+          "exerciseId": "reverse-lunges",
+          "quantityType": "reps",
+          "reps": 15,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 18,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "pushups",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "dead-bug-hold",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 30
+        },
+        {
+          "exerciseId": "bird-dog",
+          "quantityType": "reps",
+          "reps": 15,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 45
+    }
+  },
+  {
+    "id": "43068538-6a17-46a1-be7c-ab9f56cd9afc",
+    "startedAt": 1779870208308,
+    "completedAt": 1779871322349,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "jumping-jacks",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 45
+        },
+        {
+          "exerciseId": "reverse-lunges",
+          "quantityType": "reps",
+          "reps": 15,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 18,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "pushups",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "dead-bug-hold",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 30
+        },
+        {
+          "exerciseId": "bird-dog",
+          "quantityType": "reps",
+          "reps": 15,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 45
+    }
+  },
+  {
+    "id": "954e5c39-1fc2-4518-9b83-33a4c6dfd500",
+    "startedAt": 1779701011002,
+    "completedAt": 1779702122349,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "jumping-jacks",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 45
+        },
+        {
+          "exerciseId": "reverse-lunges",
+          "quantityType": "reps",
+          "reps": 15,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 18,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "pushups",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "dead-bug-hold",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 30
+        },
+        {
+          "exerciseId": "bird-dog",
+          "quantityType": "reps",
+          "reps": 15,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 45
+    }
+  },
+  {
+    "id": "1a54d470-8209-428a-8a45-e96add67834b",
+    "startedAt": 1779445413696,
+    "completedAt": 1779446522349,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "jumping-jacks",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 44
+        },
+        {
+          "exerciseId": "reverse-lunges",
+          "quantityType": "reps",
+          "reps": 14,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 17,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "pushups",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "dead-bug-hold",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 29
+        },
+        {
+          "exerciseId": "bird-dog",
+          "quantityType": "reps",
+          "reps": 14,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 45
+    }
+  },
+  {
+    "id": "4f1fdefc-b6ea-4007-8c25-0edf71409b66",
+    "startedAt": 1779265416390,
+    "completedAt": 1779266522349,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "jumping-jacks",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 44
+        },
+        {
+          "exerciseId": "reverse-lunges",
+          "quantityType": "reps",
+          "reps": 14,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 17,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "pushups",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "dead-bug-hold",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 29
+        },
+        {
+          "exerciseId": "bird-dog",
+          "quantityType": "reps",
+          "reps": 14,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 45
+    }
+  },
+  {
+    "id": "6ec81e97-acf1-44d9-b18b-63cb99437cfb",
+    "startedAt": 1779096219084,
+    "completedAt": 1779097322349,
+    "finishedEarly": true,
+    "roundsCompleted": 1,
+    "plannedRounds": 3,
+    "stoppedAtRound": 2,
+    "stoppedAtExerciseId": "glute-bridges",
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "jumping-jacks",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 44
+        },
+        {
+          "exerciseId": "reverse-lunges",
+          "quantityType": "reps",
+          "reps": 14,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 17,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "pushups",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "dead-bug-hold",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 29
+        },
+        {
+          "exerciseId": "bird-dog",
+          "quantityType": "reps",
+          "reps": 14,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 45
+    }
+  },
+  {
+    "id": "b51da41f-f450-4526-8f62-061666ae99c9",
+    "startedAt": 1778927021778,
+    "completedAt": 1778928122349,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "jumping-jacks",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 44
+        },
+        {
+          "exerciseId": "reverse-lunges",
+          "quantityType": "reps",
+          "reps": 14,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 17,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "pushups",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "dead-bug-hold",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 29
+        },
+        {
+          "exerciseId": "bird-dog",
+          "quantityType": "reps",
+          "reps": 14,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 45
+    }
+  },
+  {
+    "id": "edd51d66-9e1c-4497-86c1-a31a470c81f1",
+    "startedAt": 1778747024471,
+    "completedAt": 1778748122349,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "jumping-jacks",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 44
+        },
+        {
+          "exerciseId": "reverse-lunges",
+          "quantityType": "reps",
+          "reps": 14,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 17,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "pushups",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "dead-bug-hold",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 29
+        },
+        {
+          "exerciseId": "bird-dog",
+          "quantityType": "reps",
+          "reps": 14,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 45
+    }
+  },
+  {
+    "id": "392fad54-7824-4da5-9080-51ccc63e1f7c",
+    "startedAt": 1778577827165,
+    "completedAt": 1778578922349,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "jumping-jacks",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 43
+        },
+        {
+          "exerciseId": "reverse-lunges",
+          "quantityType": "reps",
+          "reps": 14,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 17,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "pushups",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "dead-bug-hold",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 28
+        },
+        {
+          "exerciseId": "bird-dog",
+          "quantityType": "reps",
+          "reps": 14,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 45
+    }
+  },
+  {
+    "id": "8d0f3cfe-f604-461e-88e3-000c1b3eac2f",
+    "startedAt": 1778408629859,
+    "completedAt": 1778409722349,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "jumping-jacks",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 43
+        },
+        {
+          "exerciseId": "reverse-lunges",
+          "quantityType": "reps",
+          "reps": 14,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "glute-bridges",
+          "quantityType": "reps",
+          "reps": 17,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "pushups",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "dead-bug-hold",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 28
+        },
+        {
+          "exerciseId": "bird-dog",
+          "quantityType": "reps",
+          "reps": 14,
+          "durationSeconds": 60
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 45
+    }
+  },
+  {
+    "id": "29a5f6c2-d376-4ffb-a597-69db6802c8cb",
+    "startedAt": 1778228965002,
+    "completedAt": 1778229722349,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "marching-in-place",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 38
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 14,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "knee-pushups",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "reverse-snow-angels",
+          "quantityType": "reps",
+          "reps": 14,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "plank",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 33
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 30
+    }
+  },
+  {
+    "id": "ae94f13e-628d-4721-b236-3b4755259995",
+    "startedAt": 1778059767022,
+    "completedAt": 1778060522349,
+    "finishedEarly": true,
+    "roundsCompleted": 1,
+    "plannedRounds": 3,
+    "stoppedAtRound": 2,
+    "stoppedAtExerciseId": "knee-pushups",
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "marching-in-place",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 38
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "knee-pushups",
+          "quantityType": "reps",
+          "reps": 11,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "reverse-snow-angels",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "plank",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 33
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 30
+    }
+  },
+  {
+    "id": "b291515f-634f-4c77-bfc0-cfd92e5ba9b9",
+    "startedAt": 1777890569043,
+    "completedAt": 1777891322349,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "marching-in-place",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 38
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "knee-pushups",
+          "quantityType": "reps",
+          "reps": 11,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "reverse-snow-angels",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "plank",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 33
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 30
+    }
+  },
+  {
+    "id": "61fb0755-1143-4214-a35f-9b4b318640c3",
+    "startedAt": 1777624171063,
+    "completedAt": 1777624922349,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "marching-in-place",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 37
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "knee-pushups",
+          "quantityType": "reps",
+          "reps": 11,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "reverse-snow-angels",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "plank",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 32
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 30
+    }
+  },
+  {
+    "id": "4909a907-dc95-4bba-9599-4b56d98f0d72",
+    "startedAt": 1777454973084,
+    "completedAt": 1777455722349,
+    "finishedEarly": true,
+    "roundsCompleted": 1,
+    "plannedRounds": 3,
+    "stoppedAtRound": 2,
+    "stoppedAtExerciseId": "knee-pushups",
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "marching-in-place",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 37
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "knee-pushups",
+          "quantityType": "reps",
+          "reps": 11,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "reverse-snow-angels",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "plank",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 32
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 30
+    }
+  },
+  {
+    "id": "c96eb67e-f84b-43e2-91ed-fd28109bf471",
+    "startedAt": 1777285775104,
+    "completedAt": 1777286522349,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "marching-in-place",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 37
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "knee-pushups",
+          "quantityType": "reps",
+          "reps": 11,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "reverse-snow-angels",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "plank",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 32
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 30
+    }
+  },
+  {
+    "id": "3a8f7f1d-6480-4b84-9163-fff32a339689",
+    "startedAt": 1777105777125,
+    "completedAt": 1777106522349,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "marching-in-place",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 37
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "knee-pushups",
+          "quantityType": "reps",
+          "reps": 11,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "reverse-snow-angels",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "plank",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 32
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 30
+    }
+  },
+  {
+    "id": "6dda13fc-90cf-49e1-be30-990c0c7ffbd5",
+    "startedAt": 1776936579145,
+    "completedAt": 1776937322349,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "marching-in-place",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 37
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "knee-pushups",
+          "quantityType": "reps",
+          "reps": 11,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "reverse-snow-angels",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "plank",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 32
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 30
+    }
+  },
+  {
+    "id": "5f771c68-db9b-4031-bf78-187106f60fd1",
+    "startedAt": 1776767381165,
+    "completedAt": 1776768122349,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "marching-in-place",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 36
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "knee-pushups",
+          "quantityType": "reps",
+          "reps": 11,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "reverse-snow-angels",
+          "quantityType": "reps",
+          "reps": 13,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "plank",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 31
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 30
+    }
+  },
+  {
+    "id": "3d14e1cd-3bd5-43a9-a5ba-1334a2c74ed5",
+    "startedAt": 1776587383186,
+    "completedAt": 1776588122349,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "marching-in-place",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 36
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "knee-pushups",
+          "quantityType": "reps",
+          "reps": 10,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "reverse-snow-angels",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "plank",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 31
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 30
+    }
+  },
+  {
+    "id": "0a387c79-3702-4650-a3b1-45f779de977d",
+    "startedAt": 1776418185205,
+    "completedAt": 1776418922348,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "marching-in-place",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 36
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "knee-pushups",
+          "quantityType": "reps",
+          "reps": 10,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "reverse-snow-angels",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "plank",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 31
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 30
+    }
+  },
+  {
+    "id": "15dbbf4b-613c-448e-98e1-8f8d41e33c1e",
+    "startedAt": 1776248987226,
+    "completedAt": 1776249722348,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "marching-in-place",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 36
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "knee-pushups",
+          "quantityType": "reps",
+          "reps": 10,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "reverse-snow-angels",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "plank",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 31
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 30
+    }
+  },
+  {
+    "id": "d12a7247-b5c2-4885-9ad3-db5e4efb4396",
+    "startedAt": 1776068989246,
+    "completedAt": 1776069722348,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "marching-in-place",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 36
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "knee-pushups",
+          "quantityType": "reps",
+          "reps": 10,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "reverse-snow-angels",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "plank",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 31
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 30
+    }
+  },
+  {
+    "id": "3425c12f-0d6d-498f-acde-0c79afd3a13f",
+    "startedAt": 1775813391266,
+    "completedAt": 1775814122348,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "marching-in-place",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 35
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "knee-pushups",
+          "quantityType": "reps",
+          "reps": 10,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "reverse-snow-angels",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "plank",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 30
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 30
+    }
+  },
+  {
+    "id": "4c00af59-4a31-4d8b-a1e1-eee5f46ef96c",
+    "startedAt": 1775644193287,
+    "completedAt": 1775644922348,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "marching-in-place",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 35
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "knee-pushups",
+          "quantityType": "reps",
+          "reps": 10,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "reverse-snow-angels",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "plank",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 30
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 30
+    }
+  },
+  {
+    "id": "554624ca-41e4-4d26-bda4-14ff87a0080d",
+    "startedAt": 1775464195307,
+    "completedAt": 1775464922348,
+    "finishedEarly": true,
+    "roundsCompleted": 1,
+    "plannedRounds": 3,
+    "stoppedAtRound": 2,
+    "stoppedAtExerciseId": "reverse-snow-angels",
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "marching-in-place",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 35
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "knee-pushups",
+          "quantityType": "reps",
+          "reps": 10,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "reverse-snow-angels",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "plank",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 30
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 30
+    }
+  },
+  {
+    "id": "0b7437d4-380c-4494-95be-a713b5963ae5",
+    "startedAt": 1775294997328,
+    "completedAt": 1775295722348,
+    "finishedEarly": true,
+    "roundsCompleted": 1,
+    "plannedRounds": 3,
+    "stoppedAtRound": 2,
+    "stoppedAtExerciseId": "knee-pushups",
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "marching-in-place",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 35
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "knee-pushups",
+          "quantityType": "reps",
+          "reps": 10,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "reverse-snow-angels",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "plank",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 30
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 30
+    }
+  },
+  {
+    "id": "30e85678-3f86-45ba-9858-ebb611f62f37",
+    "startedAt": 1775125799348,
+    "completedAt": 1775126522348,
+    "finishedEarly": false,
+    "roundsCompleted": 3,
+    "plannedRounds": 3,
+    "circuit": {
+      "sets": [
+        {
+          "exerciseId": "marching-in-place",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 35
+        },
+        {
+          "exerciseId": "squats",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "knee-pushups",
+          "quantityType": "reps",
+          "reps": 10,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "reverse-snow-angels",
+          "quantityType": "reps",
+          "reps": 12,
+          "durationSeconds": 60
+        },
+        {
+          "exerciseId": "plank",
+          "quantityType": "duration",
+          "reps": 10,
+          "durationSeconds": 30
+        }
+      ],
+      "rounds": 3,
+      "restBetweenRoundsSeconds": 30
+    }
+  }
+]
