@@ -116,13 +116,20 @@ function createDefaultSet(): ExerciseSet {
   };
 }
 
-function applyExerciseQuantityType(set: ExerciseSet): void {
+/** Returns true when quantity type changed (and defaults were applied). */
+function applyExerciseQuantityType(set: ExerciseSet): boolean {
   const quantityType = getExerciseQuantityType(set.exerciseId);
-  if (set.quantityType === quantityType) return;
+  if (set.quantityType === quantityType) return false;
 
   set.quantityType = quantityType;
-  set.quantityInput =
-    quantityType === "reps" ? String(set.reps) : formatDuration(set.durationSeconds);
+  if (quantityType === "reps") {
+    set.reps = 10;
+    set.quantityInput = "10";
+  } else {
+    set.durationSeconds = 60;
+    set.quantityInput = formatDuration(60);
+  }
+  return true;
 }
 
 function resetTimer(): void {
@@ -725,14 +732,18 @@ function syncEditorFromDom(): void {
     const set = circuit.sets.find((item) => item.id === row.dataset.id);
     if (!set) return;
 
+    let quantityTypeChanged = false;
     const select = row.querySelector("select");
     if (select instanceof HTMLSelectElement) {
       const nextExerciseId = select.value || DEFAULT_EXERCISE_ID;
       if (nextExerciseId !== set.exerciseId) {
         set.exerciseId = nextExerciseId;
-        applyExerciseQuantityType(set);
+        quantityTypeChanged = applyExerciseQuantityType(set);
       }
     }
+
+    // Skip stale DOM value after a type change (e.g. "1:00" would parse as reps = 1).
+    if (quantityTypeChanged) return;
 
     const quantityInput = row.querySelector("[data-quantity-input]");
     if (quantityInput instanceof HTMLInputElement) {

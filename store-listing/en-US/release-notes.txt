@@ -1,1 +1,1 @@
-Exercise quantities are now fixed per exercise (reps vs duration). Superman hold moved to lower/posterior chain.
+Exercise quantities stay fixed per exercise. Switching exercises now resets reps/duration cleanly.

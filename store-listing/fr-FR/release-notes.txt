@@ -1,1 +1,1 @@
-Les quantités sont désormais fixes par exercice (reps ou durée). Position Superman déplacée vers la chaîne postérieure.
+Les quantités restent fixes par exercice. Changer d’exercice réinitialise correctement reps/durée.
