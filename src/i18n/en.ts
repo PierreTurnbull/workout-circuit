@@ -54,8 +54,12 @@ export const en: Messages = {
     exercise: "Exercise",
     reps: "Reps",
     duration: "Duration",
+    repsPerSide: "Reps / side",
+    durationPerSide: "Duration / side",
+    perSideTooltip: "Do this full amount on each side — left, then right.",
     repetitions: "Repetitions",
     durationHint: "Duration (mm:ss or seconds)",
+    durationHintPerSide: "Per side (mm:ss or seconds)",
   },
   runner: {
     round: "Round {current} / {total}",
@@ -70,6 +74,7 @@ export const en: Messages = {
     timesUp: "Time's up!",
     startTimer: "Start timer",
     continue: "Continue",
+    switchSide: "Switch side",
     markDone: "Mark as done",
     finishCircuit: "Finish circuit",
     finishCircuitConfirmTitle: "Finish circuit?",
@@ -78,6 +83,11 @@ export const en: Messages = {
     finishCircuitConfirmAction: "Yes, finish circuit",
     finishCircuitCancel: "Keep going",
     backToEditor: "← Back to editor",
+  },
+  sides: {
+    left: "Left",
+    right: "Right",
+    sideOf: "Side {current} of {total}",
   },
   completion: {
     finishedTitle: "Circuit finished!",
@@ -129,6 +139,8 @@ export const en: Messages = {
   },
   quantity: {
     reps: "{count} reps",
+    repsSides: "{count} reps × {sides}",
+    durationSides: "{duration} × {sides}",
   },
   elapsed: {
     seconds: "{seconds}s",

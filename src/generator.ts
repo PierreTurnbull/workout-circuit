@@ -101,11 +101,11 @@ const EXERCISE_SPECS: ExerciseSpec[] = [
 
   // Static core / stability
   { id: "bear-hold", kinds: ["core-static"], impact: "medium", minIntensity: 2, maxIntensity: 3, static: true, unilateral: false, pickWeight: 0.85, quantities: { light: 20, moderate: 25, intense: 30 } },
-  { id: "dead-bug-hold", kinds: ["core-static"], impact: "low", minIntensity: 1, maxIntensity: 3, static: true, unilateral: false, pickWeight: 1.1, quantities: { light: 20, moderate: 30, intense: 35 } },
+  { id: "dead-bug-hold", kinds: ["core-static"], impact: "low", minIntensity: 1, maxIntensity: 3, static: true, unilateral: true, pickWeight: 1.1, quantities: { light: 20, moderate: 30, intense: 35 } },
   { id: "hollow-hold", kinds: ["core-static"], impact: "low", minIntensity: 2, maxIntensity: 3, static: true, unilateral: false, pickWeight: 0.9, quantities: { light: 25, moderate: 35, intense: 45 } },
   { id: "plank", kinds: ["core-static"], impact: "low", minIntensity: 1, maxIntensity: 3, static: true, unilateral: false, pickWeight: 1.2, quantities: { light: 30, moderate: 45, intense: 60 } },
   { id: "reverse-plank", kinds: ["core-static"], impact: "low", minIntensity: 2, maxIntensity: 3, static: true, unilateral: false, pickWeight: 0.85, quantities: { light: 20, moderate: 30, intense: 35 } },
-  { id: "side-plank", kinds: ["core-static"], impact: "low", minIntensity: 2, maxIntensity: 3, static: true, unilateral: false, pickWeight: 0.7, quantities: { light: 25, moderate: 35, intense: 45 } },
+  { id: "side-plank", kinds: ["core-static"], impact: "low", minIntensity: 2, maxIntensity: 3, static: true, unilateral: true, pickWeight: 0.7, quantities: { light: 25, moderate: 35, intense: 45 } },
 
   // Dynamic core
   { id: "bicycle-crunches", kinds: ["core-dynamic"], impact: "low", minIntensity: 1, maxIntensity: 3, static: false, unilateral: false, pickWeight: 1.05, quantities: { light: 16, moderate: 20, intense: 24 } },

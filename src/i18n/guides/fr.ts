@@ -448,7 +448,7 @@ export const exerciseGuidesFr: Record<string, ExerciseGuide> = {
       "Sur le côté, avant-bras au sol, coude sous l'épaule.",
       "Superposez les pieds et levez les hanches pour aligner le corps.",
       "Main sur la hanche ou bras tendu vers le haut.",
-      "Maintenez sans laisser les hanches descendre.",
+      "Maintenez sans laisser les hanches descendre, puis changez de côté.",
     ],
   },
   "reverse-plank": {

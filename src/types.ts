@@ -6,6 +6,8 @@ export interface Exercise {
   id: string;
   group: ExerciseGroup;
   quantityType: QuantityType;
+  /** Complete the full quantity on each side before advancing (default 1). */
+  sides?: number;
 }
 
 export interface ExerciseSet {
@@ -54,6 +56,8 @@ export interface CompletedWorkout {
 export interface WorkoutSession {
   circuit: Circuit;
   currentSetIndex: number;
+  /** 0-based side within the current set (for multi-side exercises). */
+  currentSideIndex: number;
   currentRound: number;
   startedAt: number;
   completedAt: number | null;

@@ -47,8 +47,12 @@ export interface Messages {
     exercise: string;
     reps: string;
     duration: string;
+    repsPerSide: string;
+    durationPerSide: string;
+    perSideTooltip: string;
     repetitions: string;
     durationHint: string;
+    durationHintPerSide: string;
   };
   runner: {
     round: string;
@@ -63,6 +67,7 @@ export interface Messages {
     timesUp: string;
     startTimer: string;
     continue: string;
+    switchSide: string;
     markDone: string;
     finishCircuit: string;
     finishCircuitConfirmTitle: string;
@@ -70,6 +75,11 @@ export interface Messages {
     finishCircuitConfirmAction: string;
     finishCircuitCancel: string;
     backToEditor: string;
+  };
+  sides: {
+    left: string;
+    right: string;
+    sideOf: string;
   };
   completion: {
     finishedTitle: string;
@@ -120,6 +130,8 @@ export interface Messages {
   };
   quantity: {
     reps: string;
+    repsSides: string;
+    durationSides: string;
   };
   elapsed: {
     seconds: string;

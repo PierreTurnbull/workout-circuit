@@ -92,6 +92,17 @@ export function tRestNextRound(round: number): string {
   return interpolate(messages.runner.restNextRound, { round });
 }
 
+/** Label for the current side of a multi-side exercise (0-based index). */
+export function tSideLabel(sideIndex: number, sides: number): string {
+  if (sides === 2) {
+    return sideIndex === 0 ? messages.sides.left : messages.sides.right;
+  }
+  return interpolate(messages.sides.sideOf, {
+    current: sideIndex + 1,
+    total: sides,
+  });
+}
+
 export function tStoppedAt(round: number, exercise: string): string {
   return interpolate(messages.completion.stoppedAtValue, { round, exercise });
 }

@@ -145,7 +145,7 @@ body {
 .set-row-bottom {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.5rem;
 }
 
 .set-row-top {
@@ -159,10 +159,21 @@ body {
 
 .set-row-bottom .quantity-type-label {
   flex: 0 0 auto;
-  min-width: 4.5rem;
+  min-width: 5.75rem;
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--muted);
+}
+
+.set-row-bottom .quantity-type-label.label-with-tooltip {
+  min-width: 0;
+  gap: 0.5rem;
+}
+
+.set-row-bottom .quantity-type-label .label-tooltip-bubble {
+  left: 0;
+  right: auto;
+  max-width: min(16rem, 80vw);
 }
 
 .set-row-bottom .set-quantity-input {
@@ -783,11 +794,23 @@ select.input:focus {
   letter-spacing: -0.02em;
 }
 
+.current-side {
+  margin: 0 0 0.35rem;
+  color: var(--text);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
 .current-qty {
   margin: 0 0 1.25rem;
   color: var(--primary);
   font-size: 1.1rem;
   font-weight: 600;
+}
+
+.current-side + .current-qty {
+  margin-top: 0.15rem;
 }
 
 .timer-panel,

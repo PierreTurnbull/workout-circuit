@@ -6,7 +6,6 @@ import type {
   Circuit,
   CompletedWorkout,
   ExerciseSet,
-  QuantityType,
   SavedCircuit,
   TimerState,
   WorkoutSession,
@@ -16,6 +15,7 @@ import {
   getExerciseGroup,
   getExerciseName,
   getExerciseQuantityType,
+  getExerciseSides,
   getGroupedExercises,
 } from "./exercises";
 import { getExerciseGifSearchUrl } from "./exercise-search";
@@ -37,6 +37,7 @@ import {
   tRestNextRound,
   tRoundBadge,
   tRoundsCompleted,
+  tSideLabel,
   tStoppedAt,
   type LocalePreference,
 } from "./i18n";
@@ -671,18 +672,14 @@ function renderSetEditor(set: ExerciseSet, index: number): HTMLElement {
       ),
     ]),
     el("div", { className: "set-row-bottom" }, [
-      el("span", {
-        className: "quantity-type-label",
-        text:
-          set.quantityType === "reps" ? messages.set.reps : messages.set.duration,
-      }),
+      renderQuantityTypeLabel(set),
       el("input", {
         className: "input set-quantity-input",
         type: "text",
         inputMode: set.quantityType === "reps" ? "numeric" : "text",
         placeholder: set.quantityType === "reps" ? "10" : "1:30",
         value: set.quantityInput,
-        ariaLabel: quantityLabel(set.quantityType),
+        ariaLabel: quantityAriaLabel(set),
         dataset: { quantityInput: "true" },
         onInput: (e) => updateQuantity(set, (e.target as HTMLInputElement).value),
       }),
@@ -690,8 +687,33 @@ function renderSetEditor(set: ExerciseSet, index: number): HTMLElement {
   ]);
 }
 
-function quantityLabel(type: QuantityType): string {
-  return type === "reps" ? messages.set.repetitions : messages.set.durationHint;
+function renderQuantityTypeLabel(set: ExerciseSet): HTMLElement {
+  const sides = getExerciseSides(set.exerciseId);
+  const label = quantityTypeLabel(set);
+
+  if (sides <= 1) {
+    return el("span", { className: "quantity-type-label", text: label });
+  }
+
+  const tip = renderLabelWithTooltip(label, messages.set.perSideTooltip, "below");
+  tip.classList.add("quantity-type-label");
+  return tip;
+}
+
+function quantityTypeLabel(set: ExerciseSet): string {
+  const sides = getExerciseSides(set.exerciseId);
+  if (set.quantityType === "reps") {
+    return sides > 1 ? messages.set.repsPerSide : messages.set.reps;
+  }
+  return sides > 1 ? messages.set.durationPerSide : messages.set.duration;
+}
+
+function quantityAriaLabel(set: ExerciseSet): string {
+  const sides = getExerciseSides(set.exerciseId);
+  if (set.quantityType === "reps") {
+    return sides > 1 ? messages.set.repsPerSide : messages.set.repetitions;
+  }
+  return sides > 1 ? messages.set.durationHintPerSide : messages.set.durationHint;
 }
 
 function updateQuantity(set: ExerciseSet, raw: string): void {
@@ -789,6 +811,7 @@ function startCircuit(): void {
       restBetweenRoundsInput: circuit.restBetweenRoundsInput,
     },
     currentSetIndex: 0,
+    currentSideIndex: 0,
     currentRound: 1,
     startedAt: Date.now(),
     completedAt: null,
@@ -830,11 +853,14 @@ function renderRunner(): void {
         "ul",
         { className: "overview-list" },
         activeCircuit.sets.map((set, index) => {
+          const sides = getExerciseSides(set.exerciseId);
           const isCurrent = !isResting && index === currentSetIndex;
+          const onLastSide =
+            session!.currentSideIndex >= sides - 1;
           const isDone =
             isResting ||
             index < currentSetIndex ||
-            (index === currentSetIndex && timer.finished);
+            (index === currentSetIndex && timer.finished && onLastSide);
 
           return el(
             "li",
@@ -848,7 +874,7 @@ function renderRunner(): void {
               ]),
               el("span", {
                 className: "overview-qty",
-                text: formatQuantity(set.quantityType, set.reps, set.durationSeconds),
+                text: formatQuantity(set.quantityType, set.reps, set.durationSeconds, sides),
               }),
             ],
           );
@@ -889,6 +915,9 @@ function renderRunner(): void {
 
 function renderActiveExerciseCard(currentSet: ExerciseSet): HTMLElement {
   const isDuration = currentSet.quantityType === "duration";
+  const sides = getExerciseSides(currentSet.exerciseId);
+  const sideIndex = session?.currentSideIndex ?? 0;
+  const hasMoreSides = sideIndex < sides - 1;
 
   return el("section", { className: "card current-exercise-card" }, [
     el("p", { className: "current-label", text: messages.runner.currentExercise }),
@@ -899,15 +928,25 @@ function renderActiveExerciseCard(currentSet: ExerciseSet): HTMLElement {
       }),
       renderExerciseInfoButton(currentSet.exerciseId),
     ]),
+    sides > 1
+      ? el("p", {
+          className: "current-side",
+          text: tSideLabel(sideIndex, sides),
+        })
+      : null,
     el("p", {
       className: "current-qty",
       text: formatQuantity(
         currentSet.quantityType,
         currentSet.reps,
         currentSet.durationSeconds,
+        sides,
       ),
     }),
-    isDuration ? renderTimerPanel(currentSet, completeCurrentExercise) : renderRepsPanel(),
+    isDuration
+      ? // Duration sides auto-chain when the timer ends; Continue only after the last side.
+        renderTimerPanel(currentSet, () => advanceCurrentSideOrExercise(false))
+      : renderRepsPanel(hasMoreSides),
   ]);
 }
 
@@ -974,15 +1013,15 @@ function renderTimerPanel(set: ExerciseSet, onComplete: () => void): HTMLElement
   ]);
 }
 
-function renderRepsPanel(): HTMLElement {
+function renderRepsPanel(hasMoreSides: boolean): HTMLElement {
   return el("div", { className: "reps-panel" }, [
     el(
       "button",
       {
         className: "btn btn-accent btn-block btn-lg",
-        onClick: completeCurrentExercise,
+        onClick: () => advanceCurrentSideOrExercise(hasMoreSides),
       },
-      messages.runner.markDone,
+      hasMoreSides ? messages.runner.switchSide : messages.runner.markDone,
     ),
   ]);
 }
@@ -1007,12 +1046,32 @@ function startTimer(totalSeconds: number): void {
         timerInterval = null;
       }
       void playTimerDoneAlert();
+
+      // Chain the next side immediately (sound still plays so the user switches).
+      if (tryAutoStartNextSide()) {
+        return;
+      }
     }
 
     render();
   }, 1000);
 
   render();
+}
+
+/** Advance to the next side and start its timer. Returns true when a new timer started. */
+function tryAutoStartNextSide(): boolean {
+  if (!session || session.isResting) return false;
+
+  const set = session.circuit.sets[session.currentSetIndex];
+  if (!set || set.quantityType !== "duration") return false;
+
+  const sides = getExerciseSides(set.exerciseId);
+  if (session.currentSideIndex >= sides - 1) return false;
+
+  session.currentSideIndex += 1;
+  startTimer(set.durationSeconds);
+  return true;
 }
 
 function refreshHistory(): void {
@@ -1279,7 +1338,12 @@ function renderWorkoutStatsAndRecap(
             el("span", { text: getExerciseName(set.exerciseId) }),
             el("span", {
               className: "recap-qty",
-              text: `${formatQuantity(set.quantityType, set.reps, set.durationSeconds)} × ${roundsLabel}`,
+              text: `${formatQuantity(
+                set.quantityType,
+                set.reps,
+                set.durationSeconds,
+                getExerciseSides(set.exerciseId),
+              )} × ${roundsLabel}`,
             }),
           ]);
         }),
@@ -1339,10 +1403,26 @@ function renderHistoryDetail(): void {
   app.append(container);
 }
 
+function advanceCurrentSideOrExercise(hasMoreSides: boolean): void {
+  if (!session) return;
+
+  resetTimer();
+
+  if (hasMoreSides) {
+    session.currentSideIndex += 1;
+    render();
+    return;
+  }
+
+  session.currentSideIndex = 0;
+  completeCurrentExercise();
+}
+
 function completeCurrentExercise(): void {
   if (!session) return;
 
   resetTimer();
+  session.currentSideIndex = 0;
 
   const { circuit: activeCircuit } = session;
   const isLastSet = session.currentSetIndex >= activeCircuit.sets.length - 1;
@@ -1383,6 +1463,7 @@ function completeRest(): void {
   session.isResting = false;
   session.currentRound += 1;
   session.currentSetIndex = 0;
+  session.currentSideIndex = 0;
   render();
 }
 

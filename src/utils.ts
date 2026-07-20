@@ -49,9 +49,18 @@ export function formatQuantity(
   quantityType: "reps" | "duration",
   reps: number,
   durationSeconds: number,
+  sides = 1,
 ): string {
   if (quantityType === "reps") {
+    if (sides > 1) {
+      return interpolate(messages.quantity.repsSides, { count: reps, sides });
+    }
     return interpolate(messages.quantity.reps, { count: reps });
   }
-  return formatDuration(durationSeconds);
+
+  const duration = formatDuration(durationSeconds);
+  if (sides > 1) {
+    return interpolate(messages.quantity.durationSides, { duration, sides });
+  }
+  return duration;
 }

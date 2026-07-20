@@ -24,13 +24,13 @@ export const EXERCISES: Exercise[] = [
   { id: "toe-taps", group: "cardio", quantityType: "duration" },
   { id: "calf-raises", group: "lower", quantityType: "reps" },
   { id: "curtsy-lunges", group: "lower", quantityType: "reps" },
-  { id: "fire-hydrants", group: "lower", quantityType: "reps" },
+  { id: "fire-hydrants", group: "lower", quantityType: "reps", sides: 2 },
   { id: "front-lunges", group: "lower", quantityType: "reps" },
   { id: "glute-bridges", group: "lower", quantityType: "reps" },
   { id: "lateral-lunges", group: "lower", quantityType: "reps" },
   { id: "reverse-lunges", group: "lower", quantityType: "reps" },
   { id: "reverse-plank", group: "core", quantityType: "duration" },
-  { id: "single-leg-glute-bridge", group: "lower", quantityType: "reps" },
+  { id: "single-leg-glute-bridge", group: "lower", quantityType: "reps", sides: 2 },
   { id: "squats", group: "lower", quantityType: "reps" },
   { id: "step-ups", group: "lower", quantityType: "reps" },
   { id: "sumo-squats", group: "lower", quantityType: "reps" },
@@ -56,14 +56,14 @@ export const EXERCISES: Exercise[] = [
   { id: "bird-dog", group: "core", quantityType: "reps" },
   { id: "crunches", group: "core", quantityType: "reps" },
   { id: "dead-bug", group: "core", quantityType: "reps" },
-  { id: "dead-bug-hold", group: "core", quantityType: "duration" },
+  { id: "dead-bug-hold", group: "core", quantityType: "duration", sides: 2 },
   { id: "flutter-kicks", group: "core", quantityType: "duration" },
   { id: "hollow-hold", group: "core", quantityType: "duration" },
   { id: "leg-raises", group: "core", quantityType: "reps" },
   { id: "plank", group: "core", quantityType: "duration" },
   { id: "plank-shoulder-taps", group: "core", quantityType: "reps" },
   { id: "russian-twists", group: "core", quantityType: "reps" },
-  { id: "side-plank", group: "core", quantityType: "duration" },
+  { id: "side-plank", group: "core", quantityType: "duration", sides: 2 },
   { id: "sit-ups", group: "core", quantityType: "reps" },
   { id: "box-step-burpees", group: "finisher", quantityType: "reps" },
   { id: "broad-jumps", group: "finisher", quantityType: "reps" },
@@ -80,6 +80,10 @@ const QUANTITY_TYPE_BY_ID = new Map(
   EXERCISES.map((exercise) => [exercise.id, exercise.quantityType]),
 );
 
+const SIDES_BY_ID = new Map(
+  EXERCISES.map((exercise) => [exercise.id, exercise.sides ?? 1]),
+);
+
 export function getExerciseName(exerciseId: string): string {
   return tExercise(exerciseId);
 }
@@ -90,6 +94,11 @@ export function getExerciseGroup(exerciseId: string): ExerciseGroup | null {
 
 export function getExerciseQuantityType(exerciseId: string): QuantityType {
   return QUANTITY_TYPE_BY_ID.get(exerciseId) ?? "reps";
+}
+
+/** How many sides to complete before advancing (1 = bilateral / alternating). */
+export function getExerciseSides(exerciseId: string): number {
+  return SIDES_BY_ID.get(exerciseId) ?? 1;
 }
 
 export function getGroupedExercises(): { label: string; exercises: Exercise[] }[] {

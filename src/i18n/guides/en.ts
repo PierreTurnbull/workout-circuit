@@ -448,7 +448,7 @@ export const exerciseGuidesEn: Record<string, ExerciseGuide> = {
       "Lie on your side with your forearm on the floor, elbow under shoulder.",
       "Stack your feet and lift your hips to form a straight line.",
       "Keep your top hand on your hip or reach it upward.",
-      "Hold without letting your hips drop.",
+      "Hold without letting your hips drop, then switch to the other side.",
     ],
   },
   "reverse-plank": {
