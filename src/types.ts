@@ -26,7 +26,13 @@ export interface Circuit {
   restBetweenRoundsInput: string;
 }
 
-export type AppPhase = "editing" | "running" | "completed" | "history" | "history-detail";
+export type AppPhase =
+  | "editing"
+  | "running"
+  | "completed"
+  | "history"
+  | "history-detail"
+  | "how-it-works";
 
 export interface SavedExerciseSet {
   exerciseId: string;

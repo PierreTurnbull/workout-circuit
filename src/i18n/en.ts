@@ -47,6 +47,67 @@ export const en: Messages = {
     generate: "Generate circuit",
     regenerate: "Regenerate circuit",
     durationMin: "{minutes} min",
+    howItWorksLink: "How generation works",
+  },
+  howItWorks: {
+    title: "How generation works",
+    subtitle: "A closer look at how Quick circuit builds a balanced workout.",
+    back: "← Back to editor",
+    introTitle: "The idea",
+    introBody:
+      "The generator does not pick a random list of exercises. It fills a fixed sequence of movement-pattern slots, then chooses a fitting exercise for each slot. Duration and intensity shape which exercises are allowed, how hard the cardio feels, and how many rounds you do.",
+    choicesTitle: "Your choices",
+    choicesBody:
+      "You set two things: session length (15, 20, or 30 minutes) and intensity (Light, Balanced, or Intense). Everything else — slot order, rounds, rest, and exercise pools — follows from those.",
+    slotsTitle: "Movement-pattern slots",
+    slotsBody:
+      "Each duration has a planned order of slots. One exercise is chosen per slot, so shorter sessions cover the essentials and longer ones add hinge, pull, dynamic core, or a finisher.",
+    slots15: "15 min — cardio → lower body → push → pull → static core (5 exercises)",
+    slots20:
+      "20 min — cardio → lower body → hinge → push → static core → dynamic core (6 exercises)",
+    slots30:
+      "30 min — cardio → lower body → hinge → push → pull → dynamic core → finisher (7 exercises)",
+    slotsLightNote:
+      "On a 30-minute Light session, the finisher slot is swapped for static core so the workout stays manageable.",
+    roundsTitle: "Rounds and rest",
+    roundsBody:
+      "Duration also sets how many times you repeat the circuit and how long you rest between rounds. You can still edit these afterward.",
+    rounds15: "15 min — 3 rounds, 30 seconds rest",
+    rounds20: "20 min — 3 rounds, 45 seconds rest",
+    rounds30: "30 min — 4 rounds, 60 seconds rest",
+    filterTitle: "Which exercises can appear",
+    filterBody:
+      "Every exercise in the catalog has intensity bounds, impact level, and optional rules. For each slot, the generator keeps only candidates that fit the session.",
+    filterIntensity:
+      "Intensity window — an exercise only appears if your chosen intensity sits between its minimum and maximum.",
+    filterImpact:
+      "Impact — Light never picks high-impact moves. On Balanced, high-impact finishers are only sometimes allowed.",
+    filterCaps:
+      "Duration caps — a few beginner-friendly moves (like wall push-ups) are limited to shorter sessions or lower intensities.",
+    filterCardio:
+      "Cardio drive — on Intense, low-drive cardio (marching in place, toe taps, and similar) is dropped so the opener stays snappy.",
+    constraintsTitle: "Balance rules",
+    constraintsBody:
+      "After the pool is filtered, soft rules keep the circuit from feeling repetitive or awkward to perform.",
+    constraintsUnique:
+      "Prefer unused exercises so the same move does not show up twice in one circuit.",
+    constraintsStatic: "At most two static holds (planks, wall sits, and similar) per circuit.",
+    constraintsConsecutive:
+      "Avoid two static holds in a row, and avoid two single-side (unilateral) exercises in a row.",
+    constraintsFallback:
+      "If a rule would empty the pool, it is relaxed step by step so a circuit can still be built.",
+    weightsTitle: "Weighted picks",
+    weightsBody:
+      "From the remaining candidates, selection is random but weighted. Exercises that fit the intensity especially well are favored. Accessory moves have lower weight. On Intense cardio, high-drive options are much more likely; on Light, gentler cardio gets a boost.",
+    quantitiesTitle: "Reps and durations",
+    quantitiesBody:
+      "Each exercise has base reps or hold times for Light, Balanced, and Intense. The generator adds a small random jitter, then snaps to clean numbers (even or multiples of 5 for reps; multiples of 5 seconds for timed holds).",
+    shuffleTitle: "Shuffle one exercise",
+    shuffleBody:
+      "The shuffle button on a set redraws only that slot. It keeps the same movement pattern, respects the rest of the circuit, and avoids re-picking the exercise you just shuffled away.",
+    editTitle: "You stay in control",
+    editBody:
+      "After generation you can change any exercise, edit quantities, add or remove sets, and adjust rounds or rest. Generation is a smart starting point — not a locked program.",
   },
   set: {
     shuffle: "Shuffle exercise",

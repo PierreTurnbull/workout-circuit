@@ -154,6 +154,8 @@ function render(): void {
     renderCompletion();
   } else if (phase === "history-detail" && selectedHistoryId) {
     renderHistoryDetail();
+  } else if (phase === "how-it-works") {
+    renderHowItWorks();
   }
 
   if (phase === "editing" || phase === "history") {
@@ -555,6 +557,15 @@ function renderGeneratorCard(): HTMLElement {
         onClick: applyGeneratedCircuit,
       },
       lastGeneratedOptions ? messages.generator.regenerate : messages.generator.generate,
+    ),
+    el(
+      "button",
+      {
+        type: "button",
+        className: "btn-text generator-how-it-works-link",
+        onClick: openHowItWorks,
+      },
+      messages.generator.howItWorksLink,
     ),
   ]);
 }
@@ -1095,6 +1106,16 @@ function openEditor(): void {
   render();
 }
 
+function openHowItWorks(): void {
+  phase = "how-it-works";
+  render();
+}
+
+function closeHowItWorks(): void {
+  phase = "editing";
+  render();
+}
+
 function loadHistoryCircuitIntoEditor(workout: CompletedWorkout): void {
   closeDeleteConfirm();
   closeFinishConfirm();
@@ -1398,6 +1419,80 @@ function renderHistoryDetail(): void {
       },
       messages.history.delete,
     ),
+  );
+
+  app.append(container);
+}
+
+function howItWorksSection(
+  title: string,
+  body: string,
+  bullets?: string[],
+  note?: string,
+): HTMLElement {
+  const children: (string | HTMLElement)[] = [
+    el("h2", { className: "section-title", text: title }),
+    el("p", { className: "how-it-works-body", text: body }),
+  ];
+
+  if (bullets && bullets.length > 0) {
+    children.push(
+      el(
+        "ul",
+        { className: "how-it-works-list" },
+        bullets.map((item) => el("li", { text: item })),
+      ),
+    );
+  }
+
+  if (note) {
+    children.push(el("p", { className: "how-it-works-note", text: note }));
+  }
+
+  return el("section", { className: "card how-it-works-section" }, children);
+}
+
+function renderHowItWorks(): void {
+  const m = messages.howItWorks;
+  const container = el("div", { className: "screen how-it-works-screen" });
+
+  container.append(
+    el("header", { className: "history-detail-header" }, [
+      el(
+        "button",
+        {
+          type: "button",
+          className: "btn-text history-back-btn",
+          onClick: closeHowItWorks,
+        },
+        m.back,
+      ),
+      renderLocalePicker(),
+    ]),
+    el("div", { className: "history-detail-intro" }, [
+      el("h1", { text: m.title }),
+      el("p", { className: "subtitle", text: m.subtitle }),
+    ]),
+    howItWorksSection(m.introTitle, m.introBody),
+    howItWorksSection(m.choicesTitle, m.choicesBody),
+    howItWorksSection(m.slotsTitle, m.slotsBody, [m.slots15, m.slots20, m.slots30], m.slotsLightNote),
+    howItWorksSection(m.roundsTitle, m.roundsBody, [m.rounds15, m.rounds20, m.rounds30]),
+    howItWorksSection(m.filterTitle, m.filterBody, [
+      m.filterIntensity,
+      m.filterImpact,
+      m.filterCaps,
+      m.filterCardio,
+    ]),
+    howItWorksSection(m.constraintsTitle, m.constraintsBody, [
+      m.constraintsUnique,
+      m.constraintsStatic,
+      m.constraintsConsecutive,
+      m.constraintsFallback,
+    ]),
+    howItWorksSection(m.weightsTitle, m.weightsBody),
+    howItWorksSection(m.quantitiesTitle, m.quantitiesBody),
+    howItWorksSection(m.shuffleTitle, m.shuffleBody),
+    howItWorksSection(m.editTitle, m.editBody),
   );
 
   app.append(container);

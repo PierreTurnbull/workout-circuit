@@ -47,6 +47,68 @@ export const fr: Messages = {
     generate: "Générer un circuit",
     regenerate: "Régénérer le circuit",
     durationMin: "{minutes} min",
+    howItWorksLink: "Comment ça marche",
+  },
+  howItWorks: {
+    title: "Comment ça marche",
+    subtitle: "Le détail de la façon dont Circuit rapide construit un entraînement équilibré.",
+    back: "← Retour à l'éditeur",
+    introTitle: "L'idée",
+    introBody:
+      "Le générateur ne tire pas une liste d'exercices au hasard. Il remplit une séquence fixe d'emplacements (types de mouvement), puis choisit un exercice adapté à chacun. La durée et l'intensité déterminent les exercices autorisés, le rythme du cardio et le nombre de tours.",
+    choicesTitle: "Vos choix",
+    choicesBody:
+      "Vous réglez deux paramètres : la durée (15, 20 ou 30 minutes) et l'intensité (Léger, Modéré ou Intense). Tout le reste — ordre des emplacements, tours, repos et exercices disponibles — en découle.",
+    slotsTitle: "Emplacements par type de mouvement",
+    slotsBody:
+      "Chaque durée a un ordre d'emplacements prévu. Un exercice est choisi par emplacement : les séances courtes couvrent l'essentiel, les plus longues ajoutent charnière, tirage, gainage dynamique ou un exercice final.",
+    slots15: "15 min — cardio → bas du corps → poussée → tirage → gainage statique (5 exercices)",
+    slots20:
+      "20 min — cardio → bas du corps → charnière → poussée → gainage statique → gainage dynamique (6 exercices)",
+    slots30:
+      "30 min — cardio → bas du corps → charnière → poussée → tirage → gainage dynamique → exercice final (7 exercices)",
+    slotsLightNote:
+      "En séance Léger de 30 minutes, l'emplacement d'exercice final est remplacé par du gainage statique pour garder la séance accessible.",
+    roundsTitle: "Tours et repos",
+    roundsBody:
+      "La durée fixe aussi le nombre de tours et le repos entre les tours. Vous pouvez encore les modifier ensuite.",
+    rounds15: "15 min — 3 tours, 30 secondes de repos",
+    rounds20: "20 min — 3 tours, 45 secondes de repos",
+    rounds30: "30 min — 4 tours, 60 secondes de repos",
+    filterTitle: "Quels exercices peuvent apparaître",
+    filterBody:
+      "Chaque exercice du catalogue a une plage d'intensité, un niveau d'impact et parfois des règles optionnelles. Pour chaque emplacement, seuls les candidats adaptés à la séance sont gardés.",
+    filterIntensity:
+      "Plage d'intensité — un exercice n'apparaît que si votre intensité est entre son minimum et son maximum.",
+    filterImpact:
+      "Impact — Léger n'inclut jamais les mouvements à fort impact. En Modéré, les exercices finaux à fort impact ne sont autorisés que parfois.",
+    filterCaps:
+      "Plafonds de durée — quelques mouvements débutants (comme les pompes murales) sont limités aux séances plus courtes ou aux intensités plus basses.",
+    filterCardio:
+      "Dynamisme cardio — en Intense, le cardio trop doux (marche sur place, touches de pointe, etc.) est exclu pour garder une ouverture dynamique.",
+    constraintsTitle: "Règles d'équilibre",
+    constraintsBody:
+      "Une fois les candidats filtrés, des règles souples évitent un circuit répétitif ou gênant à enchaîner.",
+    constraintsUnique:
+      "Préférer des exercices non encore utilisés pour éviter le même mouvement deux fois dans le circuit.",
+    constraintsStatic:
+      "Au plus deux maintiens isométriques (planches, chaise murale, etc.) par circuit.",
+    constraintsConsecutive:
+      "Éviter deux maintiens isométriques d'affilée, et éviter deux exercices unilatéraux (un côté) d'affilée.",
+    constraintsFallback:
+      "Si une règle ne laisse plus de candidats, elle est assouplie étape par étape pour pouvoir quand même construire un circuit.",
+    weightsTitle: "Tirage pondéré",
+    weightsBody:
+      "Parmi les candidats restants, le choix est aléatoire mais pondéré. Les exercices qui collent bien à l'intensité sont favorisés. Les mouvements accessoires ont moins de chances d'être tirés. En cardio Intense, les options plus dynamiques sont bien plus probables ; en Léger, le cardio plus doux est privilégié.",
+    quantitiesTitle: "Répétitions et durées",
+    quantitiesBody:
+      "Chaque exercice a des bases de répétitions ou de temps de maintien pour Léger, Modéré et Intense. Le générateur ajoute un petit aléatoire, puis arrondit à des nombres propres (pairs ou multiples de 5 pour les répétitions ; multiples de 5 secondes pour les maintiens chronométrés).",
+    shuffleTitle: "Mélanger un exercice",
+    shuffleBody:
+      "Le bouton mélanger sur un exercice ne change que cet emplacement. Il garde le même type de mouvement, respecte le reste du circuit, et évite de reprendre l'exercice que vous venez d'écarter.",
+    editTitle: "Vous gardez le contrôle",
+    editBody:
+      "Après la génération, vous pouvez changer n'importe quel exercice, modifier les quantités, ajouter ou retirer des exercices, et ajuster tours ou repos. La génération est un bon point de départ — pas un programme figé.",
   },
   set: {
     shuffle: "Mélanger l'exercice",
