@@ -61,8 +61,9 @@ export const fr: Messages = {
       "Vous réglez deux paramètres : la durée (15, 20 ou 30 minutes) et l'intensité (Léger, Modéré ou Intense). Tout le reste — ordre des emplacements, tours, repos et exercices disponibles — en découle.",
     slotsTitle: "Emplacements par type de mouvement",
     slotsBody:
-      "Chaque durée a un ordre d'emplacements prévu. Un exercice est choisi par emplacement : les séances courtes couvrent l'essentiel, les plus longues ajoutent charnière, tirage, gainage dynamique ou un exercice final.",
-    slots15: "15 min — cardio → bas du corps → poussée → tirage → gainage statique (5 exercices)",
+      "Chaque durée a un ordre d'emplacements prévu. Un exercice est choisi par emplacement : les séances courtes couvrent l'essentiel, les plus longues ajoutent charnière, tirage ou un exercice final. Le nombre d'emplacements et de tours est calibré pour que la séance dure à peu près le temps indiqué.",
+    slots15:
+      "15 min — cardio → bas du corps → poussée → tirage → gainage statique → gainage dynamique (6 exercices)",
     slots20:
       "20 min — cardio → bas du corps → charnière → poussée → gainage statique → gainage dynamique (6 exercices)",
     slots30:
@@ -73,8 +74,8 @@ export const fr: Messages = {
     roundsBody:
       "La durée fixe aussi le nombre de tours et le repos entre les tours. Vous pouvez encore les modifier ensuite.",
     rounds15: "15 min — 3 tours, 30 secondes de repos",
-    rounds20: "20 min — 3 tours, 45 secondes de repos",
-    rounds30: "30 min — 4 tours, 60 secondes de repos",
+    rounds20: "20 min — 4 tours, 45 secondes de repos",
+    rounds30: "30 min — 5 tours, 60 secondes de repos",
     filterTitle: "Quels exercices peuvent apparaître",
     filterBody:
       "Chaque exercice du catalogue a une plage d'intensité, un niveau d'impact et parfois des règles optionnelles. Pour chaque emplacement, seuls les candidats adaptés à la séance sont gardés.",
@@ -102,7 +103,7 @@ export const fr: Messages = {
       "Parmi les candidats restants, le choix est aléatoire mais pondéré. Les exercices qui collent bien à l'intensité sont favorisés. Les mouvements accessoires ont moins de chances d'être tirés. En cardio Intense, les options plus dynamiques sont bien plus probables ; en Léger, le cardio plus doux est privilégié.",
     quantitiesTitle: "Répétitions et durées",
     quantitiesBody:
-      "Chaque exercice a des bases de répétitions ou de temps de maintien pour Léger, Modéré et Intense. Le générateur ajoute un petit aléatoire, puis arrondit à des nombres propres (pairs ou multiples de 5 pour les répétitions ; multiples de 5 secondes pour les maintiens chronométrés).",
+      "Chaque exercice a des bases de répétitions ou de temps de maintien pour Léger, Modéré et Intense. Le générateur ajoute un petit aléatoire, puis arrondit à des nombres propres (pairs ou multiples de 5 pour les répétitions ; multiples de 5 secondes pour les maintiens chronométrés). Pour les mouvements à deux côtés (planche latérale, fire hydrants, etc.), cette quantité est par côté.",
     shuffleTitle: "Mélanger un exercice",
     shuffleBody:
       "Le bouton mélanger sur un exercice ne change que cet emplacement. Il garde le même type de mouvement, respecte le reste du circuit, et évite de reprendre l'exercice que vous venez d'écarter.",

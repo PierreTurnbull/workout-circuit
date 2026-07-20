@@ -132,9 +132,10 @@ const EXERCISE_SPECS: ExerciseSpec[] = [
 
 const SPEC_BY_ID = new Map(EXERCISE_SPECS.map((spec) => [spec.id, spec]));
 
-// Movement-pattern slot order (replaces duplicate lower slots).
+// Movement-pattern slot order. Counts are tuned so wall-clock ≈ label
+// (work ~35s + transition ~12s per exercise instance, plus between-round rest).
 const SLOT_PLANS: Record<CircuitDuration, SlotKind[]> = {
-  15: ["cardio", "lower", "upper-push", "pull", "core-static"],
+  15: ["cardio", "lower", "upper-push", "pull", "core-static", "core-dynamic"],
   20: ["cardio", "lower", "hinge", "upper-push", "core-static", "core-dynamic"],
   30: ["cardio", "lower", "hinge", "upper-push", "pull", "core-dynamic", "finisher"],
 };
@@ -143,9 +144,10 @@ const DURATION_CONFIG: Record<
   CircuitDuration,
   { rounds: number; restSeconds: number; restInput: string }
 > = {
+  // ~6×3 ≈ 15 min · ~6×4 ≈ 20 min · ~7×5 ≈ 30 min
   15: { rounds: 3, restSeconds: 30, restInput: "0:30" },
-  20: { rounds: 3, restSeconds: 45, restInput: "0:45" },
-  30: { rounds: 4, restSeconds: 60, restInput: "1:00" },
+  20: { rounds: 4, restSeconds: 45, restInput: "0:45" },
+  30: { rounds: 5, restSeconds: 60, restInput: "1:00" },
 };
 
 interface PickContext {

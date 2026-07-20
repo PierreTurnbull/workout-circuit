@@ -61,8 +61,9 @@ export const en: Messages = {
       "You set two things: session length (15, 20, or 30 minutes) and intensity (Light, Balanced, or Intense). Everything else — slot order, rounds, rest, and exercise pools — follows from those.",
     slotsTitle: "Movement-pattern slots",
     slotsBody:
-      "Each duration has a planned order of slots. One exercise is chosen per slot, so shorter sessions cover the essentials and longer ones add hinge, pull, dynamic core, or a finisher.",
-    slots15: "15 min — cardio → lower body → push → pull → static core (5 exercises)",
+      "Each duration has a planned order of slots. One exercise is chosen per slot, so shorter sessions cover the essentials and longer ones add hinge, pull, or a finisher. Slot count and rounds are tuned so the workout takes about as long as the label.",
+    slots15:
+      "15 min — cardio → lower body → push → pull → static core → dynamic core (6 exercises)",
     slots20:
       "20 min — cardio → lower body → hinge → push → static core → dynamic core (6 exercises)",
     slots30:
@@ -73,8 +74,8 @@ export const en: Messages = {
     roundsBody:
       "Duration also sets how many times you repeat the circuit and how long you rest between rounds. You can still edit these afterward.",
     rounds15: "15 min — 3 rounds, 30 seconds rest",
-    rounds20: "20 min — 3 rounds, 45 seconds rest",
-    rounds30: "30 min — 4 rounds, 60 seconds rest",
+    rounds20: "20 min — 4 rounds, 45 seconds rest",
+    rounds30: "30 min — 5 rounds, 60 seconds rest",
     filterTitle: "Which exercises can appear",
     filterBody:
       "Every exercise in the catalog has intensity bounds, impact level, and optional rules. For each slot, the generator keeps only candidates that fit the session.",
@@ -101,7 +102,7 @@ export const en: Messages = {
       "From the remaining candidates, selection is random but weighted. Exercises that fit the intensity especially well are favored. Accessory moves have lower weight. On Intense cardio, high-drive options are much more likely; on Light, gentler cardio gets a boost.",
     quantitiesTitle: "Reps and durations",
     quantitiesBody:
-      "Each exercise has base reps or hold times for Light, Balanced, and Intense. The generator adds a small random jitter, then snaps to clean numbers (even or multiples of 5 for reps; multiples of 5 seconds for timed holds).",
+      "Each exercise has base reps or hold times for Light, Balanced, and Intense. The generator adds a small random jitter, then snaps to clean numbers (even or multiples of 5 for reps; multiples of 5 seconds for timed holds). For two-sided moves (side plank, fire hydrants, and similar), that amount is per side.",
     shuffleTitle: "Shuffle one exercise",
     shuffleBody:
       "The shuffle button on a set redraws only that slot. It keeps the same movement pattern, respects the rest of the circuit, and avoids re-picking the exercise you just shuffled away.",
