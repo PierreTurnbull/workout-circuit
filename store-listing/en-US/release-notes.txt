@@ -1,1 +1,1 @@
-Exercise quantities stay fixed per exercise. Switching exercises now resets reps/duration cleanly.
+Two-sided moves (like side plank) now run left then right automatically. Quick circuits better match the 15 / 20 / 30 minute labels, and a new in-app page explains how generation works.

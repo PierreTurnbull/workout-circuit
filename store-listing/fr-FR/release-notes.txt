@@ -1,1 +1,1 @@
-Les quantités restent fixes par exercice. Changer d’exercice réinitialise correctement reps/durée.
+Les exercices à deux côtés (comme la planche latérale) enchaînent gauche puis droite automatiquement. Les circuits rapides collent mieux aux durées 15 / 20 / 30 minutes, et une page in-app explique comment la génération fonctionne.
